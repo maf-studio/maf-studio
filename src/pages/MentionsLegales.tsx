@@ -58,33 +58,17 @@ export default function MentionsLegales() {
         <section className={bloc}>
           <h2 className={titre}>Données personnelles</h2>
           <p className={corps}>
-            Les informations transmises via le formulaire de contact (nom,
-            adresse électronique, nature du besoin, message) servent uniquement
-            à répondre à votre demande. Elles sont acheminées par le service
-            EmailJS et ne font l'objet d'aucune cession à des tiers. Elles sont
-            conservées trois ans à compter du dernier échange.
-            <br />
-            <br />
-            Conformément au Règlement général sur la protection des données,
-            vous disposez d'un droit d'accès, de rectification, d'effacement et
-            d'opposition sur vos données. Pour l'exercer, écrivez à{' '}
-            <a href="mailto:aminefadelpro@gmail.com" className="text-magenta hover:underline">
-              aminefadelpro@gmail.com
-            </a>
-            . Vous pouvez également introduire une réclamation auprès de la CNIL
-            (cnil.fr).
+            Le traitement de vos données est décrit en détail dans la{' '}
+            <Link to="/confidentialite" className="text-magenta hover:underline">
+              politique de confidentialité
+            </Link>
+            . En résumé : seules les informations que vous saisissez dans le
+            formulaire de contact sont collectées, elles servent uniquement à
+            vous répondre, et ce site n'utilise aucun outil de mesure d'audience.
           </p>
         </section>
 
-        <section className={bloc}>
-          <h2 className={titre}>Cookies</h2>
-          <p className={corps}>
-            Ce site ne dépose aucun cookie de mesure d'audience ni de publicité.
-            Le module de prise de rendez-vous Cal.com, chargé depuis
-            app.cal.com, peut déposer des cookies techniques nécessaires à son
-            fonctionnement au moment où vous l'ouvrez.
-          </p>
-        </section>
+        
 
         <section className={bloc}>
           <h2 className={titre}>Médiation de la consommation</h2>
@@ -96,9 +80,10 @@ export default function MentionsLegales() {
           </p>
         </section>
 
-        <Link to="/" className="inline-block mt-6 text-magenta hover:underline">
-          Retour à l'accueil
-        </Link>
+        <div className="flex gap-6 mt-6">
+          <Link to="/" className="text-magenta hover:underline">Retour à l'accueil</Link>
+          <Link to="/confidentialite" className="text-magenta hover:underline">Politique de confidentialité</Link>
+        </div>
       </main>
     </>
   )

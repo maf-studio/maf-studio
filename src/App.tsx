@@ -3,6 +3,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Home from '@/pages/Home'
 import MentionsLegales from '@/pages/MentionsLegales'
+import Confidentialite from '@/pages/Confidentialite'
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/mentions-legales" element={<MentionsLegales />} />
+          <Route path="/confidentialite" element={<Confidentialite />} />
         </Routes>
         <Footer />
       </div>
