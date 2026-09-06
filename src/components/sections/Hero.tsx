@@ -1,153 +1,107 @@
-import { motion } from 'framer-motion'
-import Particles from '@/components/Particles'
-import CalendlyButton from '@/components/CalendlyButton'
-import { useTheme } from '@/contexts/ThemeContext'
+import { motion, useReducedMotion } from 'framer-motion'
+import BookingButton from '@/components/BookingButton'
 
-function scrollTo(href: string) {
-  document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
-}
-
+/**
+ * Hero — composition asymétrique alignée sur un rail à gauche.
+ * Une seule séquence animée sur toute la page : les fils se tendent,
+ * puis le titre se pose. Rien d'autre ne bouge au scroll.
+ */
 export default function Hero() {
-  const { isDark } = useTheme()
+  const reduce = useReducedMotion()
+  const draw = (delay: number) =>
+    reduce
+      ? { pathLength: 1, opacity: 1 }
+      : { pathLength: 1, opacity: 1, transition: { pathLength: { duration: 1.1, delay, ease: [0.16, 1, 0.3, 1] as const }, opacity: { duration: 0.2, delay } } }
+
+  const line = (delay: number) => ({
+    initial: reduce ? { opacity: 1 } : { opacity: 0, y: '110%' },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] as const },
+  })
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden strings-bg">
+    <section className="relative min-h-[100svh] flex items-center border-b border-rule overflow-hidden">
+      {/* Les fils. Tendus depuis le coin supérieur droit, ils traversent
+          le titre — c'est le motif de marque, pas un fond décoratif. */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+      >
+        {[
+          { d: 'M1520 -60 L120 900', c: 'var(--color-violet)', w: 1, o: 0.55, t: 0.15 },
+          { d: 'M1620 -60 L220 900', c: 'var(--color-violet)', w: 1, o: 0.28, t: 0.25 },
+          { d: 'M1720 -60 L320 900', c: 'var(--color-magenta)', w: 1, o: 0.4, t: 0.35 },
+          { d: 'M1840 -60 L440 900', c: 'var(--color-violet)', w: 1, o: 0.16, t: 0.45 },
+        ].map((s, i) => (
+          <motion.path
+            key={i}
+            d={s.d}
+            stroke={s.c}
+            strokeWidth={s.w}
+            strokeOpacity={s.o}
+            fill="none"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={draw(s.t)}
+          />
+        ))}
+      </svg>
 
-      {/* Deep violet radial glow — emanating from bottom */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at center bottom, rgba(124,58,237,0.22) 0%, rgba(124,58,237,0.06) 45%, transparent 70%)' }}
-      />
-      {/* Secondary magenta glow — top right */}
-      <div className="absolute -top-20 right-1/4 w-[500px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(255,45,122,0.10) 0%, transparent 65%)' }}
-      />
-      {/* Far left accent */}
-      <div className="absolute top-1/3 -left-40 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(124,58,237,0.10) 0%, transparent 65%)' }}
-      />
-
-      <Particles />
-
-      {/* Horizontal subtle line across center */}
-      <div className="absolute top-1/2 left-0 right-0 h-px pointer-events-none"
-        style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(124,58,237,0.15) 30%, rgba(255,45,122,0.15) 70%, transparent 100%)' }}
-      />
-
-      <div className="relative z-10 max-w-6xl mx-auto px-5 pt-20 pb-10 text-center">
-
-        {/* Eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.1 }}
-          className="inline-flex items-center gap-2.5 mb-8"
-        >
-          <span className="w-6 h-px bg-gradient-to-r from-transparent to-[#7C3AED]" />
-          <span className="text-xs font-semibold tracking-[0.22em] uppercase text-[#6B30C9] dark:text-[#9D5CF5]">
-            Mohamed-Amine Fadel · MAF Studio
-          </span>
-          <span className="w-6 h-px bg-gradient-to-l from-transparent to-[#FF2D7A]" />
-        </motion.div>
-
-        {/* Main headline — diagonal, massive, italic */}
-        <div className="overflow-hidden">
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            style={{ transform: 'rotate(-1.5deg)' }}
-          >
-            <h1 className="font-display font-black italic leading-[0.88] tracking-tight select-none">
-              <span
-                className="block text-[#0D0B18] dark:text-white"
-                style={{ fontSize: 'clamp(3.8rem, 10vw, 9rem)' }}
-              >
-                VOTRE MOTEUR
+      <div className="relative z-10 w-full max-w-[1180px] mx-auto px-6 md:px-10 pt-32 pb-20">
+        <div>
+          <h1 className="display text-bone">
+            {['La croissance,', 'ça se pilote.'].map((t, i) => (
+              <span key={t} className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  style={{ fontSize: 'clamp(2.7rem, 9.4vw, 8.5rem)' }}
+                  {...line(0.45 + i * 0.12)}
+                >
+                  {t}
+                </motion.span>
               </span>
-              <span
-                className="block text-grad-main"
-                style={{ fontSize: 'clamp(3.8rem, 10vw, 9rem)' }}
-              >
-                DE CROISSANCE,
-              </span>
-              <span
-                className="block text-[#0D0B18] dark:text-white"
-                style={{ fontSize: 'clamp(2.8rem, 7vw, 6.5rem)' }}
-              >
-                OPÉRATIONNEL EN 48H.
-              </span>
-            </h1>
-          </motion.div>
+            ))}
+          </h1>
         </div>
 
-        {/* Sub-tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.45 }}
-          className="mt-8 text-base md:text-lg text-[#5C5875] dark:text-[#888899] max-w-xl mx-auto leading-relaxed"
-        >
-          Growth Ops, Social Ads, Automatisation IA & Web —{' '}
-          <span className="text-[#4B3F9E] dark:text-[#D0D0FF]">un partenaire qui exécute, pas un consultant qui conseille.</span>
-        </motion.p>
-
-        {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          {/* Primary — ouvre Calendly en popup */}
-          <CalendlyButton className="relative group px-8 py-4 text-base font-bold text-white rounded-xl overflow-hidden">
-            <span className="absolute inset-0 bg-gradient-to-r from-[#7C3AED] to-[#FF2D7A] transition-all duration-300" />
-            <span
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: 'linear-gradient(135deg, #9D5CF5, #FF2D7A)' }}
-            />
-            <span className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
-              style={{ boxShadow: '0 0 40px rgba(255,45,122,0.4), 0 0 80px rgba(124,58,237,0.25)' }}
-            />
-            <span className="relative flex items-center gap-2">
-              Discutons de votre projet
-              <span className="text-lg group-hover:translate-x-1 transition-transform inline-block">→</span>
-            </span>
-          </CalendlyButton>
-
-          {/* Secondary */}
-          <button
-            onClick={() => scrollTo('#services')}
-            className="px-8 py-4 text-base font-semibold text-[#5C5875] dark:text-[#A0A0C0] hover:text-[#0D0B18] dark:hover:text-white rounded-xl border border-[#E2DCFF] dark:border-[#1E1E2E] hover:border-[#7C3AED]/50 bg-transparent hover:bg-[#7C3AED]/8 transition-all duration-300"
-          >
-            Découvrir nos services ↓
-          </button>
-        </motion.div>
-
-        {/* Trust bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
+          initial={reduce ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="mt-16 flex items-center justify-center gap-8 md:gap-12 flex-wrap"
+          transition={{ duration: 0.7, delay: 0.85 }}
+          className="mt-10 grid md:grid-cols-[minmax(0,32rem)_auto] gap-10 md:gap-16 md:items-end"
         >
-          {[
-            { val: '30+', label: 'PME accompagnées' },
-            { val: '3×', label: 'ROI moyen' },
-            { val: '48h', label: 'pour démarrer' },
-          ].map(({ val, label }) => (
-            <div key={label} className="text-center">
-              <div
-                className="font-display font-black italic text-3xl md:text-4xl text-grad-main"
-              >{val}</div>
-              <div className="text-xs text-[#5C5875] dark:text-[#888899] mt-0.5 tracking-wide">{label}</div>
-            </div>
-          ))}
-        </motion.div>
-      </div>
+          <p className="text-lg md:text-xl text-dim leading-relaxed">
+            Je construis et j'opère les systèmes d'acquisition des TPE et PME
+            françaises. CRM, publicité, automatisation, site web — montés pour
+            tourner sans vous une fois en place.
+          </p>
 
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-        style={{ background: `linear-gradient(to bottom, transparent, ${isDark ? '#0A0A0F' : '#F8F7FF'})` }}
-      />
+          <div className="flex flex-col sm:flex-row gap-3">
+            <BookingButton className="cut-sm bg-magenta px-7 py-4 text-[0.95rem] font-bold text-white hover:bg-violet transition-colors duration-200">
+              Réserver 20 minutes
+            </BookingButton>
+            <a
+              href="#services"
+              className="cut-sm border border-rule px-7 py-4 text-[0.95rem] font-semibold text-bone hover:border-violet transition-colors duration-200 text-center"
+            >
+              Voir les tarifs
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Ligne de crédibilité — uniquement des faits vérifiables.
+            Aucun chiffre de résultat tant qu'il n'y a pas de cas réel. */}
+        <motion.p
+          initial={reduce ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 1.05 }}
+          className="mt-16 pt-6 border-t border-rule text-sm text-dim"
+        >
+          4 ans en growth operations chez Skooleo · Zoho, Make, n8n, Meta, TikTok ·
+          Basé en Île-de-France, j'interviens partout en France
+        </motion.p>
+      </div>
     </section>
   )
 }

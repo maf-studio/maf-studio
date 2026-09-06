@@ -1,147 +1,148 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
+import emailjs from '@emailjs/browser'
+import BookingButton from '@/components/BookingButton'
+
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+const EMAIL = 'aminefadelpro@gmail.com'
+const TEL = '06 66 84 03 44'
+
+const BESOINS = ['Site web', 'Publicité', 'CRM', 'Automatisation', 'Je ne sais pas encore']
+
+type Etat = 'idle' | 'envoi' | 'ok' | 'erreur'
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', project: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [form, setForm] = useState({ nom: '', email: '', besoin: BESOINS[0], message: '' })
+  const [etat, setEtat] = useState<Etat>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const configOk = Boolean(SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY)
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setSent(true)
+    if (!configOk) {
+      setEtat('erreur')
+      return
+    }
+    setEtat('envoi')
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: form.nom,
+          reply_to: form.email,
+          besoin: form.besoin,
+          message: form.message,
+        },
+        { publicKey: PUBLIC_KEY },
+      )
+      setEtat('ok')
+    } catch {
+      setEtat('erreur')
+    }
   }
 
-  const inputClass =
-    'w-full bg-[#F0EEFF] dark:bg-[#12121A] border border-[#E2DCFF] dark:border-[#2A2A3E] rounded-xl px-4 py-3 text-[#0D0B18] dark:text-white text-sm placeholder-[#9992B5] dark:placeholder-[#6B7280] focus:outline-none focus:border-[#7C3AED]/60 focus:bg-[#E8E4FF] dark:focus:bg-[#1A1A28] transition-all duration-200'
+  const champ =
+    'w-full bg-ink border border-rule px-4 py-3 text-bone text-sm placeholder-dim focus:outline-none focus:border-violet transition-colors'
 
   return (
-    <section id="contact" className="py-28 relative overflow-hidden">
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-[#7C3AED]/10 blur-[120px] pointer-events-none" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent via-[#7C3AED]/30 to-transparent" />
+    <section id="contact" className="border-b border-rule">
+      <div className="max-w-[1180px] mx-auto px-6 md:px-10 py-24 md:py-32">
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-20">
+          <div>
+            <h2 className="display text-bone text-5xl md:text-7xl">
+              Parlons de
+              <br />
+              votre projet
+            </h2>
+            <p className="mt-8 text-dim text-lg leading-relaxed max-w-[42ch]">
+              Décrivez votre situation en deux lignes. Je réponds sous 24 heures
+              ouvrées, et je vous dis franchement si je suis le bon interlocuteur.
+            </p>
 
-      <div className="max-w-4xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="text-sm font-medium text-[#7C3AED] uppercase tracking-[0.2em] mb-4 block">
-            Travaillons ensemble
-          </span>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-[#0D0B18] dark:text-white mb-4">
-            Démarrons votre{' '}
-            <span className="text-gradient-violet">projet</span>
-          </h2>
-          <p className="text-[#5C5875] dark:text-[#A0A0C0] max-w-lg mx-auto text-lg">
-            Décrivez-nous votre vision. Nous vous répondons sous 24h.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="border-gradient rounded-2xl p-8 relative overflow-hidden"
-        >
-          <div className="absolute inset-0 grid-bg opacity-20 rounded-2xl" />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-[#7C3AED] to-transparent" />
-
-          {sent ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="relative py-16 text-center"
-            >
-              <div className="text-5xl mb-4">✦</div>
-              <h3 className="text-2xl font-bold text-[#0D0B18] dark:text-white mb-2">Message envoyé !</h3>
-              <p className="text-[#5C5875] dark:text-[#A0A0C0]">Nous vous répondrons dans les prochaines 24h.</p>
-              <Button
-                onClick={() => setSent(false)}
-                className="mt-8 bg-[#F0EEFF] dark:bg-[#1A1A28] border border-[#E2DCFF] dark:border-[#2A2A3E] text-[#0D0B18] dark:text-white hover:bg-[#E2DCFF] dark:hover:bg-[#2A2A3E]"
-              >
-                Envoyer un autre message
-              </Button>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="relative grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
-                <label className="text-xs text-[#5C5875] dark:text-[#6B7280] uppercase tracking-wider mb-2 block">
-                  Nom complet
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Jean Dupont"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className={inputClass}
-                />
+            <div className="mt-12 space-y-5 border-t border-rule pt-8">
+              <BookingButton className="cut-sm bg-magenta px-7 py-4 text-[0.95rem] font-bold text-white hover:bg-violet transition-colors duration-200">
+                Réserver 20 minutes
+              </BookingButton>
+              <div className="text-sm space-y-1.5 pt-2">
+                <a href={`mailto:${EMAIL}`} className="block text-dim hover:text-magenta transition-colors">
+                  {EMAIL}
+                </a>
+                <a href={`tel:+33${TEL.slice(1).replace(/\s/g, '')}`} className="block text-dim hover:text-magenta transition-colors">
+                  {TEL}
+                </a>
               </div>
+            </div>
+          </div>
 
-              <div>
-                <label className="text-xs text-[#5C5875] dark:text-[#6B7280] uppercase tracking-wider mb-2 block">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="jean@company.fr"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className={inputClass}
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="text-xs text-[#5C5875] dark:text-[#6B7280] uppercase tracking-wider mb-2 block">
-                  Type de projet
-                </label>
-                <select
-                  value={form.project}
-                  onChange={(e) => setForm({ ...form, project: e.target.value })}
-                  className={`${inputClass} cursor-pointer`}
-                >
-                  <option value="" className="bg-[#12121A]">Sélectionner un type...</option>
-                  <option value="web" className="bg-[#12121A]">Site web / Application</option>
-                  <option value="branding" className="bg-[#12121A]">Branding & Identité</option>
-                  <option value="ecommerce" className="bg-[#12121A]">E-commerce</option>
-                  <option value="motion" className="bg-[#12121A]">Motion Design</option>
-                  <option value="other" className="bg-[#12121A]">Autre</option>
-                </select>
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="text-xs text-[#5C5875] dark:text-[#6B7280] uppercase tracking-wider mb-2 block">
-                  Décrivez votre projet
-                </label>
-                <textarea
-                  required
-                  rows={5}
-                  placeholder="Parlez-nous de votre projet, vos objectifs, votre deadline..."
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className={`${inputClass} resize-none`}
-                />
-              </div>
-
-              <div className="md:col-span-2 flex flex-col sm:flex-row gap-4 items-center justify-between pt-2">
-                <p className="text-xs text-[#5C5875] dark:text-[#6B7280]">
-                  ✓ Réponse garantie sous 24h · ✓ Devis gratuit · ✓ Sans engagement
+          <div className="cut bg-ink-2 border border-rule p-8 md:p-10">
+            {etat === 'ok' ? (
+              <div className="py-16">
+                <h3 className="display-flat text-bone text-2xl">Message reçu.</h3>
+                <p className="mt-3 text-dim">
+                  Je vous réponds sous 24 heures ouvrées à l'adresse {form.email}.
                 </p>
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="bg-gradient-to-r from-[#7C3AED] to-[#5B21B6] hover:from-[#9D5CF5] hover:to-[#7C3AED] text-white border-0 glow-violet px-8 py-6 h-auto text-base whitespace-nowrap"
-                >
-                  Envoyer le message →
-                </Button>
               </div>
-            </form>
-          )}
-        </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="nom" className="block text-sm text-dim mb-2">Votre nom</label>
+                    <input
+                      id="nom" required value={form.nom} className={champ}
+                      onChange={(e) => setForm({ ...form, nom: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm text-dim mb-2">Votre email</label>
+                    <input
+                      id="email" type="email" required value={form.email} className={champ}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="besoin" className="block text-sm text-dim mb-2">Votre besoin</label>
+                  <select
+                    id="besoin" value={form.besoin} className={champ}
+                    onChange={(e) => setForm({ ...form, besoin: e.target.value })}
+                  >
+                    {BESOINS.map((b) => <option key={b} value={b}>{b}</option>)}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm text-dim mb-2">Où vous en êtes</label>
+                  <textarea
+                    id="message" required rows={5} value={form.message} className={champ}
+                    placeholder="Ex : j'ai un site WordPress de 2019 que je n'arrive plus à modifier et je perds des demandes de devis."
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  />
+                </div>
+
+                <button
+                  type="submit" disabled={etat === 'envoi'}
+                  className="cut-sm w-full bg-violet px-6 py-4 text-sm font-bold text-white hover:bg-magenta disabled:opacity-50 transition-colors duration-200"
+                >
+                  {etat === 'envoi' ? 'Envoi en cours' : 'Envoyer'}
+                </button>
+
+                {etat === 'erreur' && (
+                  <p className="text-sm text-magenta" role="alert">
+                    {configOk
+                      ? "L'envoi a échoué."
+                      : "Le formulaire n'est pas encore configuré."}{' '}
+                    Écrivez-moi directement à{' '}
+                    <a href={`mailto:${EMAIL}`} className="underline">{EMAIL}</a>.
+                  </p>
+                )}
+              </form>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -1,68 +1,56 @@
-import { motion } from 'framer-motion'
-import CalendlyButton from '@/components/CalendlyButton'
+import { Link } from 'react-router-dom'
+
+const EMAIL = 'aminefadelpro@gmail.com'
+const TEL = '06 66 84 03 44'
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-[#E2DCFF] dark:border-[#1E1E2E] bg-[#F8F7FF] dark:bg-[#0A0A0F]">
-      <div className="max-w-6xl mx-auto px-5 py-12">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          {/* Brand */}
+    <footer className="thread-field">
+      <div className="max-w-[1180px] mx-auto px-6 md:px-10 py-16">
+        <div className="grid md:grid-cols-[1.4fr_1fr_1fr] gap-10">
           <div>
-            <div className="flex items-center gap-2.5 mb-3">
-              <div className="relative w-8 h-8 rounded-md bg-gradient-to-br from-[#7C3AED] to-[#FF2D7A] flex items-center justify-center">
-                <span className="font-display font-black italic text-white text-sm leading-none">M</span>
-              </div>
-              <span className="font-display font-black italic text-[#0D0B18] dark:text-white text-base uppercase tracking-wide">
-                MAF <span className="text-[#7C3AED]">Studio</span>
-              </span>
+            <div className="display text-bone text-2xl">
+              MAF <span className="text-magenta">Studio</span>
             </div>
-            <p className="text-xs text-[#5C5875] dark:text-[#444456] max-w-xs leading-relaxed">
-              Growth Ops · Social Ads · Automatisation IA · Web
-              <br />Pour les PME & TPE françaises qui veulent scaler.
+            <p className="mt-4 text-sm text-dim max-w-[34ch] leading-relaxed">
+              Growth operations, publicité, automatisation et sites web pour les
+              TPE et PME françaises.
             </p>
           </div>
 
-          {/* Links */}
-          <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-[#5C5875] dark:text-[#444456]">
-            {[
-              ['#services', 'Services'],
-              ['#before-after', 'Avant/Après'],
-              ['#faq', 'FAQ'],
-              ['#contact', 'Contact'],
-            ].map(([href, label]) => (
-              <button
-                key={href}
-                onClick={() => document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })}
-                className="hover:text-[#888899] transition-colors"
-              >
-                {label}
-              </button>
-            ))}
+          <div>
+            <div className="text-sm text-bone font-semibold mb-4">Contact</div>
+            <div className="space-y-2 text-sm">
+              <a href={`mailto:${EMAIL}`} className="block text-dim hover:text-magenta transition-colors">
+                {EMAIL}
+              </a>
+              <a href={`tel:+33${TEL.slice(1).replace(/\s/g, '')}`} className="block text-dim hover:text-magenta transition-colors">
+                {TEL}
+              </a>
+              <a href="https://cal.com/amine-fadel" target="_blank" rel="noopener noreferrer" className="block text-dim hover:text-magenta transition-colors">
+                Prendre rendez-vous
+              </a>
+            </div>
           </div>
 
-          {/* CTA */}
-          <CalendlyButton
-            className="flex-shrink-0 px-5 py-2.5 text-sm font-bold text-white rounded-xl"
-            style={{ background: 'linear-gradient(135deg, #7C3AED, #FF2D7A)' }}
-          >
-            On travaille ensemble ?
-          </CalendlyButton>
+          <div>
+            <div className="text-sm text-bone font-semibold mb-4">Prestations</div>
+            <div className="space-y-2 text-sm">
+              {[
+                ['Site web', '#services'],
+                ['Publicité en ligne', '#services'],
+                ['Growth ops & CRM', '#services'],
+                ['Automatisation', '#services'],
+              ].map(([l, h]) => (
+                <a key={l} href={h} className="block text-dim hover:text-magenta transition-colors">{l}</a>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-[#E2DCFF] dark:border-[#1E1E2E] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#5C5875] dark:text-[#333344]">
-          <span>© 2024 MAF Studio — Mohamed-Amine Fadel. Tous droits réservés.</span>
-          <motion.span
-            className="flex items-center gap-1"
-          >
-            Fait avec
-            <motion.span
-              animate={{ scale: [1, 1.3, 1] }}
-              transition={{ repeat: Infinity, duration: 1.8 }}
-              className="text-[#FF2D7A]"
-            >♥</motion.span>
-            et sans compromis
-          </motion.span>
+        <div className="mt-14 pt-6 border-t border-rule flex flex-col sm:flex-row gap-3 justify-between text-xs text-dim">
+          <span>© {new Date().getFullYear()} MAF Studio — Mohamed-Amine Fadel · <Link to="/mentions-legales" className="hover:text-magenta transition-colors">Mentions légales</Link></span>
+          <span>SIRET 103 617 684 00016 · Tarifs hors taxes, TVA non applicable art. 293 B du CGI.</span>
         </div>
       </div>
     </footer>

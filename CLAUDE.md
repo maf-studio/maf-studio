@@ -30,16 +30,34 @@ Single-page marketing site for MAF Studio (freelance growth ops / digital agency
 **Provider stack** (`main.tsx`): `HelmetProvider` → `ThemeProvider` → `BrowserRouter` → `App`
 
 **Page composition** (`src/pages/Home.tsx`):
-`SEO` + `JsonLd` + `Navbar` (fixed) + `Hero` → `Problem` → `Services` → `BeforeAfter` → `FAQ` → `FinalCTA` + `Footer`
+`SEO` + `JsonLd` + `Navbar` + `Hero` -> `Services` -> `Method` -> `About` -> `FAQ` -> `Contact` + `Footer`.
+`Proof.tsx` exists but is intentionally NOT mounted: it must be filled with a real, verifiable client case first.
 
-**Theme system** (`src/contexts/ThemeContext.tsx`): `isDark` state persisted to `localStorage`, toggled by the Navbar. Dark mode applied via a `.dark` class on `<html>`. All components use `dark:` Tailwind variants.
 
-**Calendly integration** (`src/components/CalendlyButton.tsx`): Calendly JS widget loaded via `index.html` script tag. `openCalendly()` is exported for imperative use. The `CalendlyButton` component wraps it. Calendly API requires hex colors *without* `#` — see `getPageSettings()`.
+**Theme**: dark only. The light theme and `ThemeContext` were removed; there are no `dark:` variants left.
 
-**UI components** (`src/components/ui/`): shadcn/ui components generated with `npx shadcn add <component>`. Config is in `components.json` (style: `base-nova`, alias `@/components/ui`).
 
-**Styling**: Tailwind CSS v4 (configured via `@tailwindcss/vite` plugin, no `tailwind.config.js`). Theme tokens defined in `src/index.css` under `@theme`. Custom utility classes defined there too (`.text-grad-main`, `.glow-violet`, `.glow-magenta`, `.strings-bg`, etc.). The display font is **Barlow Condensed** (loaded via Google Fonts in `index.html`); body font is **Geist Variable** (loaded via `@fontsource-variable/geist`).
+**Booking**: Cal.com (`cal.com/amine-fadel`). The embed loader lives in `index.html`; `BookingButton.tsx` just sets `data-cal-link`. Calendly was removed (paid).
+
+
+**UI**: no component library. shadcn/ui and `components.json` were removed — nothing imported them.
+
+
+**Styling**: Tailwind v4 via `@tailwindcss/vite`. Tokens in `src/index.css` under `@theme`. Single typeface: **Archivo Variable** (wdth 62-125 + wght 100-900 + italic), self-hosted via `@fontsource-variable/archivo` and imported in `index.css`. No call to fonts.googleapis.com: one fewer third-party request, and no visitor IP handed to Google (RGPD). Inter and Geist were removed deliberately.
+Utilities: `.display` / `.display-flat` (headlines), `.thread-field` (the diagonal thread motif), `.cut` / `.cut-sm` (diagonal corner clip replacing border-radius).
+Hard rule: **no gradients as decoration**, no glow shadows, no scroll-triggered fade-ups. One animated sequence exists, on Hero load.
+
 
 **SEO**: `react-helmet-async` manages `<head>`. `src/components/SEO.tsx` handles Open Graph / Twitter cards. `src/components/JsonLd.tsx` injects structured data. `public/sitemap.xml` and `public/robots.txt` are static.
 
 **Path alias**: `@/` maps to `src/`.
+
+## Pricing displayed on the site
+
+Keep these three places in sync or the structured data will contradict the page:
+`Services.tsx`, `JsonLd.tsx` (`hasOfferCatalog`), and the FAQ answer about the ads package.
+
+- Site vitrine: from 690 EUR excl. VAT
+- Online shop: from 1490 EUR excl. VAT
+- Ads management: 390 EUR excl. VAT / month, ad spend not included
+- Growth ops & CRM, automation: on quote

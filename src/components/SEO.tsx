@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
+import { SITE_URL } from '@/site'
 
-const SITE_URL = 'https://maf-studio.fr'
+
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`
 
 interface SEOProps {
@@ -13,8 +14,8 @@ interface SEOProps {
 }
 
 export default function SEO({
-  title = 'MAF STUDIO — Growth Ops, Ads & Automatisation IA | Mohamed-Amine Fadel',
-  description = "Freelance Growth Ops & Digital basé en Île-de-France. J'aide les PME & TPE à scaler avec la stratégie, les ads, l'automatisation IA et le web.",
+  title = 'MAF Studio — Growth ops, ads et automatisation pour TPE et PME',
+  description = "Mohamed-Amine Fadel, freelance growth ops en Île-de-France. CRM, publicité Meta et TikTok, automatisation, sites web. Site vitrine à partir de 500 € HT.",
   canonical = SITE_URL,
   ogImage = DEFAULT_OG_IMAGE,
   ogType = 'website',
@@ -38,7 +39,7 @@ export default function SEO({
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="MAF STUDIO — Growth Ops & Digital pour PME" />
+      <meta property="og:image:alt" content="MAF Studio — Growth ops et digital pour TPE et PME" />
       <meta property="og:site_name" content="MAF STUDIO" />
       <meta property="og:locale" content="fr_FR" />
 
@@ -54,7 +55,7 @@ export default function SEO({
       {/* ── Extra crawl hints ── */}
       <meta name="author" content="Mohamed-Amine Fadel" />
       <meta name="keywords" content="growth ops, freelance growth, social ads, automatisation IA, make, n8n, webflow, wordpress, PME, TPE, Île-de-France, CRM, digital marketing" />
-      <meta name="theme-color" content="#7C3AED" />
+      <meta name="theme-color" content="#08070C" />
     </Helmet>
   )
 }
