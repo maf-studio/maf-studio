@@ -14,8 +14,8 @@ interface SEOProps {
 }
 
 export default function SEO({
-  title = 'MAF Studio — Growth ops, ads et automatisation pour TPE et PME',
-  description = "Mohamed-Amine Fadel, freelance growth ops en Île-de-France. CRM, publicité Meta et TikTok, automatisation, sites web. Site vitrine à partir de 500 € HT.",
+  title = 'MAF Studio — Growth ops et automatisation pour TPE et PME',
+  description = "Freelance growth ops : CRM, publicité Meta et TikTok, automatisation, sites web. À distance partout en France. Site vitrine dès 500 € HT.",
   canonical = SITE_URL,
   ogImage = DEFAULT_OG_IMAGE,
   ogType = 'website',
@@ -54,7 +54,7 @@ export default function SEO({
 
       {/* ── Extra crawl hints ── */}
       <meta name="author" content="Mohamed-Amine Fadel" />
-      <meta name="keywords" content="growth ops, freelance growth, social ads, automatisation IA, make, n8n, webflow, wordpress, PME, TPE, Île-de-France, CRM, digital marketing" />
+      <meta name="keywords" content="growth ops, freelance growth, social ads, automatisation IA, make, n8n, webflow, wordpress, PME, TPE, freelance à distance, CRM, digital marketing" />
       <meta name="theme-color" content="#08070C" />
     </Helmet>
   )

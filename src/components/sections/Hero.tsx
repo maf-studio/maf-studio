@@ -99,7 +99,7 @@ export default function Hero() {
           className="mt-16 pt-6 border-t border-rule text-sm text-dim"
         >
           4 ans en growth operations chez Skooleo · Zoho, Make, n8n, Meta, TikTok ·
-          Basé en Île-de-France, j'interviens partout en France
+          Travail à distance, partout en France
         </motion.p>
       </div>
     </section>

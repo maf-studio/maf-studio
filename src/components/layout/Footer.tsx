@@ -4,7 +4,8 @@ import { EMAIL, TEL, TEL_LIEN, LINKEDIN, CAL_LINK } from '@/site'
 const PRESTATIONS = ['Site web', 'Publicité en ligne', 'Growth ops & CRM', 'Automatisation']
 
 export default function Footer() {
-  const lien = 'block text-dim hover:text-magenta transition-colors'
+  // py-2.5 : porte les liens de 20 à 40 px de haut, atteignable au pouce
+  const lien = 'block py-2.5 text-dim hover:text-magenta transition-colors'
   const titreCol = 'text-sm text-bone font-semibold mb-4'
 
   return (
@@ -23,7 +24,7 @@ export default function Footer() {
 
           <div>
             <div className={titreCol}>Contact</div>
-            <div className="space-y-2 text-sm">
+            <div className="text-sm -my-2.5">
               <a href={`mailto:${EMAIL}`} className={lien}>{EMAIL}</a>
               <a href={`tel:${TEL_LIEN}`} className={lien}>{TEL}</a>
               <a href={`https://cal.com/${CAL_LINK}`} target="_blank" rel="noopener noreferrer" className={lien}>
@@ -37,7 +38,7 @@ export default function Footer() {
 
           <div>
             <div className={titreCol}>Prestations</div>
-            <div className="space-y-2 text-sm">
+            <div className="text-sm -my-2.5">
               {PRESTATIONS.map((p) => (
                 <a key={p} href="#services" className={lien}>{p}</a>
               ))}
@@ -46,7 +47,7 @@ export default function Footer() {
 
           <div>
             <div className={titreCol}>Légal</div>
-            <div className="space-y-2 text-sm">
+            <div className="text-sm -my-2.5">
               <Link to="/mentions-legales" className={lien}>Mentions légales</Link>
               <Link to="/confidentialite" className={lien}>Politique de confidentialité</Link>
             </div>

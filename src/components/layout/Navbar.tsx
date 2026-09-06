@@ -27,7 +27,7 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-[1180px] mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
-        <a href="#" className="display text-bone text-xl tracking-tight">
+        <a href="#" className="display text-bone text-xl tracking-tight py-3">
           MAF <span className="text-magenta">Studio</span>
         </a>
 
@@ -47,7 +47,7 @@ export default function Navbar() {
           onClick={() => setOuvert(!ouvert)}
           aria-label={ouvert ? 'Fermer le menu' : 'Ouvrir le menu'}
           aria-expanded={ouvert}
-          className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+          className="md:hidden w-11 h-11 flex flex-col items-center justify-center gap-1.5"
         >
           <span className={`w-6 h-px bg-bone transition-transform ${ouvert ? 'translate-y-[3.5px] rotate-45' : ''}`} />
           <span className={`w-6 h-px bg-bone transition-transform ${ouvert ? '-translate-y-[3.5px] -rotate-45' : ''}`} />

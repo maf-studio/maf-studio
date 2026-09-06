@@ -26,14 +26,7 @@ export default function JsonLd() {
         vatID: 'FR — TVA non applicable, art. 293 B du CGI',
         identifier: { '@type': 'PropertyValue', name: 'SIRET', value: '10361768400016' },
         areaServed: { '@type': 'Country', name: 'France' },
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: "5 rue de l'Ilette",
-          postalCode: '77500',
-          addressLocality: 'Chelles',
-          addressRegion: 'Île-de-France',
-          addressCountry: 'FR',
-        },
+        availableLanguage: 'fr',
         founder: {
           '@type': 'Person',
           name: 'Mohamed-Amine Fadel',

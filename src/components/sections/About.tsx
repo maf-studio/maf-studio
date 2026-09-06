@@ -17,12 +17,12 @@ export default function About() {
             />
             <div className="mt-5">
               <div className="display-flat text-bone text-lg">Mohamed-Amine Fadel</div>
-              <div className="text-sm text-dim mt-1">Chelles, Île-de-France</div>
+              <div className="text-sm text-dim mt-1">Growth ops freelance · à distance</div>
               <a
                 href={LINKEDIN}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-2 text-sm text-magenta hover:underline"
+                className="inline-block mt-1 py-2 text-sm text-magenta hover:underline"
               >
                 Profil LinkedIn
               </a>
@@ -50,9 +50,9 @@ export default function About() {
                 quelqu'un à temps plein pour s'en occuper.
               </p>
               <p className="text-bone">
-                Je travaille seul. Vous n'aurez pas de chef de projet
-                intermédiaire, et la personne qui vous répond au téléphone est
-                celle qui fait le travail.
+                Je travaille seul et à distance. Vous n'aurez pas de chef de
+                projet intermédiaire, et la personne qui vous répond au
+                téléphone est celle qui fait le travail.
               </p>
             </div>
           </div>

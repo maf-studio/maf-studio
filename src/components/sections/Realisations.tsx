@@ -55,7 +55,7 @@ export default function Realisations() {
               href={m.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="display-flat text-bone/55 hover:text-magenta text-lg md:text-xl transition-colors"
+              className="display-flat text-bone/55 hover:text-magenta text-lg md:text-xl py-2 transition-colors"
             >
               {m.nom}
             </a>

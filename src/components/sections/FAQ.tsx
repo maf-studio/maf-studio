@@ -25,8 +25,8 @@ const QUESTIONS = [
     r: "Zoho, HubSpot ou Pipedrive côté CRM. Make et n8n pour l'automatisation. Meta, TikTok et Snapchat côté publicité. Webflow ou WordPress pour le web. Si vous avez déjà quelque chose en place qui fonctionne, je m'adapte plutôt que de tout remplacer.",
   },
   {
-    q: 'Vous vous déplacez ?',
-    r: "Je suis en Île-de-France et je peux venir pour le premier rendez-vous si vous êtes dans la région. Le reste du travail se fait à distance, avec un point hebdomadaire en visio.",
+    q: 'Comment ça se passe, à distance ?',
+    r: "Tout se fait à distance, où que vous soyez en France. Un point hebdomadaire en visio de vingt minutes, et un canal écrit entre deux — mail, WhatsApp ou Slack, comme vous préférez. Vous avez accès aux mêmes outils que moi : vous voyez le travail avancer en temps réel, vous n'attendez pas un rapport.",
   },
   {
     q: "Et si les campagnes ne donnent rien ?",
