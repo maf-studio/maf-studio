@@ -1,4 +1,5 @@
 import mingo from '@/assets/mingo.jpg'
+import { LINKEDIN } from '@/site'
 
 export default function About() {
   return (
@@ -17,6 +18,14 @@ export default function About() {
             <div className="mt-5">
               <div className="display-flat text-bone text-lg">Mohamed-Amine Fadel</div>
               <div className="text-sm text-dim mt-1">Chelles, Île-de-France</div>
+              <a
+                href={LINKEDIN}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-2 text-sm text-magenta hover:underline"
+              >
+                Profil LinkedIn
+              </a>
             </div>
           </div>
 

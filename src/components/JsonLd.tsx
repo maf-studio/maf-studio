@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import { SITE_URL } from '@/site'
+import { SITE_URL, LINKEDIN } from '@/site'
 
 
 
@@ -19,6 +19,7 @@ export default function JsonLd() {
         description:
           "Growth operations, publicité en ligne, automatisation et création de sites web pour les TPE et PME françaises.",
         url: SITE_URL,
+        sameAs: [LINKEDIN],
         email: 'aminefadelpro@gmail.com',
         telephone: '+33666840344',
         priceRange: '€€',
@@ -37,6 +38,7 @@ export default function JsonLd() {
           '@type': 'Person',
           name: 'Mohamed-Amine Fadel',
           jobTitle: 'Growth Operations Manager',
+          sameAs: [LINKEDIN],
         },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',

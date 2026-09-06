@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 
+import { LINKEDIN } from '@/site'
+
 const EMAIL = 'aminefadelpro@gmail.com'
 const TEL = '06 66 84 03 44'
 
@@ -29,6 +31,9 @@ export default function Footer() {
               </a>
               <a href="https://cal.com/amine-fadel" target="_blank" rel="noopener noreferrer" className="block text-dim hover:text-magenta transition-colors">
                 Prendre rendez-vous
+              </a>
+              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="block text-dim hover:text-magenta transition-colors">
+                LinkedIn
               </a>
             </div>
           </div>
