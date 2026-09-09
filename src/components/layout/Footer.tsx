@@ -1,62 +1,61 @@
 import { Link } from 'react-router-dom'
-import { EMAIL, TEL, TEL_LIEN, LINKEDIN, CAL_LINK } from '@/site'
+import { EMAIL, TEL, TEL_LIEN, LINKEDIN } from '@/site'
+import { MENTION_TVA } from '@/content/offres'
 
-const PRESTATIONS = ['Site web', 'Publicité en ligne', 'Growth ops & CRM', 'Automatisation']
+const PRESTATIONS = [
+  { label: 'Site vitrine', href: '#tarifs' },
+  { label: 'Boutique en ligne', href: '#tarifs' },
+  { label: 'Site sur-mesure', href: '#tarifs' },
+  { label: 'Publicité en ligne', href: '#offre' },
+]
 
 export default function Footer() {
-  // py-2.5 : porte les liens de 20 à 40 px de haut, atteignable au pouce
-  const lien = 'block py-2.5 text-dim hover:text-magenta transition-colors'
-  const titreCol = 'text-sm text-bone font-semibold mb-4'
+  const lien = 'mono block py-2.5 text-gris hover:text-encre transition-colors'
 
   return (
-    <footer className="thread-field">
-      <div className="max-w-[1180px] mx-auto px-6 md:px-10 py-16">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+    <footer data-ground="penombre" className="bg-penombre">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-16">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
           <div>
-            <div className="display text-bone text-2xl">
-              MAF <span className="text-magenta">Studio</span>
+            <div className="text-encre text-xl" style={{ fontVariationSettings: "'wdth' 118, 'wght' 800" }}>
+              MAF STUDIO
             </div>
-            <p className="mt-4 text-sm text-dim max-w-[34ch] leading-relaxed">
-              Growth operations, publicité, automatisation et sites web pour les
-              TPE et PME françaises. Travail à distance, partout en France.
+            <p className="mt-4 text-[0.95rem] text-gris max-w-[36ch] leading-relaxed">
+              Agence web et digitale. Sites vitrines, boutiques en ligne et publicité en
+              ligne pour les TPE et PME françaises. Travail à distance, partout en France.
             </p>
           </div>
 
           <div>
-            <div className={titreCol}>Contact</div>
-            <div className="text-sm -my-2.5">
-              <a href={`mailto:${EMAIL}`} className={lien}>{EMAIL}</a>
+            <div className="mono text-encre mb-3">Contact</div>
+            <div className="-my-2.5">
+              <a href={`mailto:${EMAIL}`} className={`${lien} break-all`}>{EMAIL}</a>
               <a href={`tel:${TEL_LIEN}`} className={lien}>{TEL}</a>
-              <a href={`https://cal.com/${CAL_LINK}`} target="_blank" rel="noopener noreferrer" className={lien}>
-                Prendre rendez-vous
-              </a>
-              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className={lien}>
-                LinkedIn
-              </a>
+              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className={lien}>LinkedIn</a>
             </div>
           </div>
 
           <div>
-            <div className={titreCol}>Prestations</div>
-            <div className="text-sm -my-2.5">
+            <div className="mono text-encre mb-3">Prestations</div>
+            <div className="-my-2.5">
               {PRESTATIONS.map((p) => (
-                <a key={p} href="#services" className={lien}>{p}</a>
+                <a key={p.label} href={p.href} className={lien}>{p.label}</a>
               ))}
             </div>
           </div>
 
           <div>
-            <div className={titreCol}>Légal</div>
-            <div className="text-sm -my-2.5">
+            <div className="mono text-encre mb-3">Légal</div>
+            <div className="-my-2.5">
               <Link to="/mentions-legales" className={lien}>Mentions légales</Link>
-              <Link to="/confidentialite" className={lien}>Politique de confidentialité</Link>
+              <Link to="/confidentialite" className={lien}>Confidentialité</Link>
             </div>
           </div>
         </div>
 
-        <div className="mt-14 pt-6 border-t border-rule flex flex-col sm:flex-row gap-3 justify-between text-xs text-dim">
+        <div className="mt-14 pt-6 border-t border-filet flex flex-col sm:flex-row gap-2 justify-between mono text-gris">
           <span>© {new Date().getFullYear()} MAF Studio — Mohamed-Amine Fadel</span>
-          <span>SIRET 103 617 684 00016 · Tarifs hors taxes, TVA non applicable art. 293 B du CGI.</span>
+          <span>SIRET 103 617 684 00016 · {MENTION_TVA}</span>
         </div>
       </div>
     </footer>

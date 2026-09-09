@@ -1,106 +1,110 @@
-import { motion, useReducedMotion } from 'framer-motion'
 import BookingButton from '@/components/BookingButton'
+import Porte from '@/components/Porte'
+import { FORFAITS, MENTION_TVA, euros } from '@/content/offres'
 
 /**
- * Hero — composition asymétrique alignée sur un rail à gauche.
- * Une seule séquence animée sur toute la page : les fils se tendent,
- * puis le titre se pose. Rien d'autre ne bouge au scroll.
+ * HERO — qualifier ou disqualifier le visiteur en trois secondes, avec
+ * quatre faits vérifiables et rien d'autre.
+ *
+ * Le H1 est écrit en trois <span> EN DUR. Aucun découpage au runtime : le
+ * texte est peint à la première frame, à sa taille et son opacité
+ * définitives. Le LCP est acquis tout de suite, il n'y a aucun CLS, et un
+ * échec de script laisse un hero complet. Ce qui bouge, c'est l'ombre.
+ *
+ * Le filet horizontal à 78 % de la hauteur est le SOL : au-dessus tout est
+ * debout, en dessous tout est couché.
  */
+
+const [essentiel, complet] = FORFAITS
+
+const PLAQUE: [string, string][] = [
+  ['Forfait', essentiel.nom],
+  ['Prix', `${euros(essentiel.prix)} € HT`],
+  ['Délai', `${essentiel.delai} j ouvrés`],
+  ['Pages', '1'],
+  ['Textes', 'Rédigés'],
+  ['Formation', '1 h'],
+  ['Propriété', '100 %'],
+]
+
 export default function Hero() {
-  const reduce = useReducedMotion()
-  const draw = (delay: number) =>
-    reduce
-      ? { pathLength: 1, opacity: 1 }
-      : { pathLength: 1, opacity: 1, transition: { pathLength: { duration: 1.1, delay, ease: [0.16, 1, 0.3, 1] as const }, opacity: { duration: 0.2, delay } } }
-
-  const line = (delay: number) => ({
-    initial: reduce ? { opacity: 1 } : { opacity: 0, y: '110%' },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] as const },
-  })
-
   return (
-    <section className="relative min-h-[100svh] flex items-center border-b border-rule overflow-hidden">
-      {/* Les fils. Tendus depuis le coin supérieur droit, ils traversent
-          le titre — c'est le motif de marque, pas un fond décoratif. */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 1440 900"
-        preserveAspectRatio="xMidYMid slice"
-        aria-hidden="true"
-      >
-        {[
-          { d: 'M1520 -60 L120 900', c: 'var(--color-violet)', w: 1, o: 0.55, t: 0.15 },
-          { d: 'M1620 -60 L220 900', c: 'var(--color-violet)', w: 1, o: 0.28, t: 0.25 },
-          { d: 'M1720 -60 L320 900', c: 'var(--color-magenta)', w: 1, o: 0.4, t: 0.35 },
-          { d: 'M1840 -60 L440 900', c: 'var(--color-violet)', w: 1, o: 0.16, t: 0.45 },
-        ].map((s, i) => (
-          <motion.path
-            key={i}
-            d={s.d}
-            stroke={s.c}
-            strokeWidth={s.w}
-            strokeOpacity={s.o}
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={draw(s.t)}
-          />
-        ))}
-      </svg>
+    <section id="haut" data-ground="jour"
+             className="relative min-h-[100svh] flex items-center border-b border-filet overflow-clip">
+      {/* Le sol. */}
+      <div aria-hidden="true" className="absolute inset-x-0 top-[78%] h-px bg-filet" />
 
-      <div className="relative z-10 w-full max-w-[1180px] mx-auto px-6 md:px-10 pt-32 pb-20">
-        <div>
-          <h1 className="display text-bone">
-            {['La croissance,', 'ça se pilote.'].map((t, i) => (
-              <span key={t} className="block overflow-hidden">
-                <motion.span
-                  className="block"
-                  style={{ fontSize: 'clamp(2.7rem, 9.4vw, 8.5rem)' }}
-                  {...line(0.45 + i * 0.12)}
-                >
-                  {t}
-                </motion.span>
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-[6vw] pt-28 pb-16 md:pt-32">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-end">
+
+          <div className="lg:col-span-8">
+            <div className="ombre-coupee">
+            <Porte>
+              <h1 className="display text-encre"
+                  aria-label="Votre site en ligne en 5 jours ouvrés.">
+                <span aria-hidden="true" className="block">Votre site</span>
+                <span aria-hidden="true" className="block">en ligne en</span>
+                <span aria-hidden="true" className="block">5 jours ouvrés.</span>
+              </h1>
+            </Porte>
+            </div>
+
+            <p className="mt-14 mesure text-gris">
+              Agence web et digitale. Site vitrine, boutique en ligne, et la publicité qui
+              les alimente. Une seule personne conçoit, rédige et met votre site en ligne,
+              puis vous en remet toutes les clés.{' '}
+              <span className="text-encre">
+                Le site, le nom de domaine et le code sont à votre nom dès le premier jour.
               </span>
-            ))}
-          </h1>
-        </div>
+            </p>
 
-        <motion.div
-          initial={reduce ? { opacity: 1 } : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.85 }}
-          className="mt-10 grid md:grid-cols-[minmax(0,32rem)_auto] gap-10 md:gap-16 md:items-end"
-        >
-          <p className="text-lg md:text-xl text-dim leading-relaxed">
-            Je construis et j'opère les systèmes d'acquisition des TPE et PME
-            françaises. CRM, publicité, automatisation, site web — montés pour
-            tourner sans vous une fois en place.
-          </p>
+            {/* Sans prix dans le premier écran, la page ne qualifie personne. */}
+            <p className="mono mt-8 text-encre">
+              {euros(essentiel.prix)} € HT
+              <span className="text-gris"> · </span>Livré en {essentiel.delai} jours ouvrés
+              <span className="text-gris"> · </span>Site et code à votre nom
+              <span className="text-gris"> · </span>Sans abonnement
+            </p>
 
-          <div className="flex flex-col sm:flex-row gap-3">
-            <BookingButton className="cut-sm bg-magenta px-7 py-4 text-[0.95rem] font-bold text-white hover:bg-violet transition-colors duration-200">
-              Réserver 20 minutes
-            </BookingButton>
-            <a
-              href="#services"
-              className="cut-sm border border-rule px-7 py-4 text-[0.95rem] font-semibold text-bone hover:border-violet transition-colors duration-200 text-center"
-            >
-              Voir les tarifs
-            </a>
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <BookingButton className="plaque-pleine bg-encre text-jour mono mono-md px-7 py-4 text-center">
+                Réserver 20 minutes
+              </BookingButton>
+              <a href="#tarifs"
+                 className="mono mono-md px-7 py-4 text-center text-encre border-b border-encre self-start sm:self-auto">
+                Voir les prix
+              </a>
+            </div>
+
+            <p className="mono mt-12 pt-5 border-t border-filet text-gris">
+              Quatre sites en production, ouvrez-les
+              <span className="hidden sm:inline"> · </span><br className="sm:hidden" />
+              Site, domaine et code à votre nom
+              <span className="hidden sm:inline"> · </span><br className="sm:hidden" />
+              Travail à distance, partout en France
+            </p>
           </div>
-        </motion.div>
 
-        {/* Ligne de crédibilité — uniquement des faits vérifiables.
-            Aucun chiffre de résultat tant qu'il n'y a pas de cas réel. */}
-        <motion.p
-          initial={reduce ? { opacity: 1 } : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 1.05 }}
-          className="mt-16 pt-6 border-t border-rule text-sm text-dim"
-        >
-          4 ans en growth operations chez Skooleo · Zoho, Make, n8n, Meta, TikTok ·
-          Travail à distance, partout en France
-        </motion.p>
+          {/* La plaque signalétique. Pas d'illustration, pas de maquette
+              d'écran : la plaque porte le prix et la définition du délai. */}
+          <div className="lg:col-span-4 lg:col-start-9">
+            <Porte>
+              <dl className="biseau bg-jour border border-filet p-6 md:p-7">
+                {PLAQUE.map(([k, v]) => (
+                  <div key={k} className="flex items-baseline gap-2 py-[7px] first:pt-0 last:pb-0">
+                    <dt className="mono text-gris shrink-0">{k}</dt>
+                    <span aria-hidden="true" className="flex-1 border-b border-dotted border-filet translate-y-[-3px]" />
+                    <dd className="mono text-encre shrink-0">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Porte>
+            <p className="mono mt-3 text-gris">
+              {complet.nom} 6 pages : {euros(complet.prix)} € HT — {complet.delai} j ouvrés
+            </p>
+            <p className="mono mt-2 text-gris opacity-70">{MENTION_TVA}</p>
+          </div>
+        </div>
       </div>
     </section>
   )
