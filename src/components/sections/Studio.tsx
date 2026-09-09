@@ -1,5 +1,4 @@
 import mingo from '@/assets/mingo.jpg'
-import Porte from '@/components/Porte'
 import { LINKEDIN } from '@/site'
 
 /**
@@ -42,7 +41,7 @@ export default function Studio() {
           </div>
 
           <div className="lg:col-span-4 lg:col-start-9">
-            <Porte>
+            <div className="inline-block ring-1 ring-jour/25">
               <img
                 src={mingo}
                 alt="Mohamed-Amine Fadel, fondateur de MAF Studio"
@@ -52,7 +51,7 @@ export default function Studio() {
                 decoding="async"
                 className="w-[150px] h-[150px] md:w-[180px] md:h-[180px] object-cover"
               />
-            </Porte>
+            </div>
             <dl className="mt-6 border-t border-filet-nuit">
               {[
                 ['Fondateur', 'Mohamed-Amine Fadel'],

@@ -154,6 +154,11 @@
   /* Sous 480px une largeur 118 déborde : on resserre. */
   @media (max-width: 479px) { .display { font-variation-settings: 'wdth' 92, 'wght' 800; } }
 
+  /* En petit écran le titre se replie sur quatre lignes, et un interligne de
+     0,84 fait heurter l'accent de « OUVRÉS » la ligne du dessus. On desserre
+     juste assez pour dégager les capitales accentuées. */
+  @media (max-width: 767px) { .display { line-height: 0.94; } }
+
   .h2 {
     font-family: var(--font-sans);
     font-variation-settings: 'wdth' 112, 'wght' 750;
@@ -208,6 +213,17 @@
     color: var(--color-ombre) !important;
     border-color: var(--color-ombre) !important;
     background-color: transparent !important;
+  }
+
+  /* Une image ne se peint pas avec `color`. Sans cette règle, le clone
+     affiche la photo en couleur, cisaillée : une copie, pas une ombre.
+     brightness(0) l'aplatit en silhouette, l'opacité la ramène au ton du
+     sol. */
+  .porte > .ombre img,
+  .porte > .ombre svg,
+  .porte > .ombre video {
+    filter: brightness(0);
+    opacity: 0.13;
   }
 
   .porte > .ombre {
