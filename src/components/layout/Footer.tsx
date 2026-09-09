@@ -2,11 +2,10 @@ import { Link } from 'react-router-dom'
 import { EMAIL, TEL, TEL_LIEN, LINKEDIN } from '@/site'
 import { MENTION_TVA } from '@/content/offres'
 
-const PRESTATIONS = [
-  { label: 'Site vitrine', href: '#tarifs' },
-  { label: 'Boutique en ligne', href: '#tarifs' },
-  { label: 'Site sur-mesure', href: '#tarifs' },
-  { label: 'Publicité en ligne', href: '#offre' },
+const PAGES = [
+  { label: 'Réalisations', to: '/realisations' },
+  { label: 'Tarifs', to: '/tarifs' },
+  { label: 'Le journal', to: '/blog' },
 ]
 
 export default function Footer() {
@@ -36,10 +35,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <div className="mono text-encre mb-3">Prestations</div>
+            <div className="mono text-encre mb-3">Pages</div>
             <div className="-my-2.5">
-              {PRESTATIONS.map((p) => (
-                <a key={p.label} href={p.href} className={lien}>{p.label}</a>
+              {PAGES.map((p) => (
+                <Link key={p.to} to={p.to} viewTransition className={lien}>{p.label}</Link>
               ))}
             </div>
           </div>

@@ -254,6 +254,91 @@
     margin-bottom: -2.25rem;
   }
 
+
+  /* --- MOUVEMENT ---------------------------------------------
+     Tout ce qui bouge sur ce site est en CSS, piloté par la position de
+     défilement, donc hors du fil principal et sans une ligne de JavaScript.
+     C'est ce qui permet d'avoir des transitions partout sans payer le
+     moindre kilo-octet ni la moindre saccade.
+
+     RÈGLE DE ROBUSTESSE : l'état final EST l'état par défaut. Un navigateur
+     sans `animation-timeline` affiche la page complète, simplement immobile.
+     Rien n'est jamais à `opacity: 0` en dehors du bloc @supports.
+     ------------------------------------------------------------ */
+  @keyframes monte {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @keyframes trace {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* L'ombre s'allonge à mesure que le bloc traverse l'écran : la lumière
+     descend quand on descend. C'est la signature du site, désormais gratuite. */
+  @keyframes course {
+    from { transform: skewX(-30deg) scaleY(-1.55); }
+    to   { transform: skewX(-14deg) scaleY(-0.75); }
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .monte {
+        animation: monte linear both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 26%;
+      }
+
+      /* Décalage en cascade, plafonné à six éléments : au-delà, le dernier
+         arrive trop tard et l'effet se voit au lieu de se sentir. */
+      .cascade > *:nth-child(1) { animation-range: entry 2% cover 22%; }
+      .cascade > *:nth-child(2) { animation-range: entry 6% cover 26%; }
+      .cascade > *:nth-child(3) { animation-range: entry 10% cover 30%; }
+      .cascade > *:nth-child(4) { animation-range: entry 14% cover 34%; }
+      .cascade > *:nth-child(5) { animation-range: entry 18% cover 38%; }
+      .cascade > *:nth-child(n+6) { animation-range: entry 22% cover 42%; }
+      .cascade > * {
+        animation: monte linear both;
+        animation-timeline: view();
+      }
+
+      .trace {
+        animation: trace linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 20%;
+        transform-origin: left;
+      }
+
+      .porte > .ombre {
+        animation: course linear both;
+        animation-timeline: view();
+        animation-range: entry 0% exit 100%;
+      }
+    }
+  }
+
+  /* Barre de progression de lecture. Pilotée par le défilement du document,
+     en CSS, donc sans écouteur ni recalcul à chaque frame. */
+  .progression {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    transform-origin: left;
+    transform: scaleX(0);
+    background: var(--accent-large);
+  }
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .progression {
+        animation: trace linear both;
+        animation-timeline: scroll();
+      }
+    }
+  }
+
   /* --- FORMES -----------------------------------------------
      Le biseau à 24 degrés a quitté les cartes : il jurait avec le rayon.
      L'angle survit là où il porte du sens, dans la direction des ombres.

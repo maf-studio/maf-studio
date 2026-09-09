@@ -5,31 +5,41 @@ import Footer from '@/components/layout/Footer'
 import BarreMobile from '@/components/layout/BarreMobile'
 import Home from '@/pages/Home'
 
-// Les pages légales sont des obligations, pas du trafic : elles n'ont rien à
-// faire dans le bundle initial.
+// Tout ce qui n'est pas l'accueil sort du bundle initial. La page d'entrée
+// n'a aucune raison de transporter le code des pages qu'on n'a pas ouvertes.
+const PageTarifs = lazy(() => import('@/pages/PageTarifs'))
+const PageRealisations = lazy(() => import('@/pages/PageRealisations'))
+const Blog = lazy(() => import('@/pages/Blog'))
+const ArticlePage = lazy(() => import('@/pages/Article'))
 const MentionsLegales = lazy(() => import('@/pages/MentionsLegales'))
 const Confidentialite = lazy(() => import('@/pages/Confidentialite'))
 const Introuvable = lazy(() => import('@/pages/Introuvable'))
 
-/** Les ancres de l'ancien site. Des liens ont été envoyés par e-mail : ils
- *  doivent continuer d'arriver quelque part de sensé. */
-const ANCIENNES_ANCRES: Record<string, string> = {
-  '#services': '#offre',
-  '#a-propos': '#studio',
-  '#avantages': '#garanties',
+/** Les ancres et routes de l'ancien site. Des liens ont été envoyés par
+ *  e-mail et depuis des devis : ils doivent continuer d'arriver quelque part
+ *  de sensé plutôt que sur une page vide. */
+const ANCIENNES: Record<string, string> = {
+  '#services': '/tarifs',
+  '#a-propos': '/#studio',
+  '#avantages': '/tarifs',
+  '#programme': '/tarifs',
 }
 
 function Navigation() {
   const { pathname, hash } = useLocation()
 
   useEffect(() => {
-    const cible = ANCIENNES_ANCRES[hash]
+    const cible = ANCIENNES[hash]
     if (cible) {
-      document.querySelector(cible)?.scrollIntoView()
+      window.location.replace(cible)
       return
     }
-    // Sans cela, on change de route et on reste au milieu de la page.
-    if (!hash) window.scrollTo(0, 0)
+    if (hash) {
+      document.querySelector(hash)?.scrollIntoView()
+      return
+    }
+    // Sans cela, on change de page et on reste au milieu de la précédente.
+    window.scrollTo(0, 0)
   }, [pathname, hash])
 
   return null
@@ -47,9 +57,13 @@ export default function App() {
 
       <div className="min-h-screen bg-jour">
         <Navbar />
-        <Suspense fallback={null}>
+        <Suspense fallback={<div className="min-h-[60svh]" />}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/tarifs" element={<PageTarifs />} />
+            <Route path="/realisations" element={<PageRealisations />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<ArticlePage />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />
             <Route path="/confidentialite" element={<Confidentialite />} />
             {/* Sans cette route, toute URL inconnue renvoyait un 200 avec un

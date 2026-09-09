@@ -21,7 +21,7 @@ export default function BarreMobile() {
       <BookingButton className="mono py-4 text-center border-r border-jour/15">
         Rendez-vous
       </BookingButton>
-      <a href="#formulaire" className="mono py-4 text-center">
+      <a href="/#formulaire" className="mono py-4 text-center">
         Devis
       </a>
     </div>

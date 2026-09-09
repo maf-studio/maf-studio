@@ -17,19 +17,9 @@ const propre = (url: string) => url.replace(/^https:\/\/(www\.)?/, '').replace(/
 export default function Realisations() {
   return (
     <section id="realisations" data-ground="jour" className="border-b border-filet">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-24 md:py-32">
-        <span className="mono text-gris">03 — Réalisations</span>
-        <h2 className="h2 text-encre mt-4 max-w-[20ch]">
-          Des sites en ligne, pas des maquettes
-        </h2>
-        <p className="mt-6 mesure text-gris">
-          Je n'ai ni avis clients, ni note Google, ni témoignages : l'activité est jeune
-          et je n'en inventerai pas. À la place, quatre sites que j'ai construits et que
-          vous pouvez ouvrir maintenant.
-        </p>
-
+      <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-16 md:py-20">
         {/* ── Sites livrés de bout en bout ───────────────────── */}
-        <div className="carte overflow-hidden mt-14 border border-filet grid sm:grid-cols-2 lg:grid-cols-4">
+        <div className="cascade carte overflow-hidden border border-filet grid sm:grid-cols-2 lg:grid-cols-4">
           {REALISATIONS.map((p, i) => (
             <a
               key={p.nom}

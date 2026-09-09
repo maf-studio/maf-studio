@@ -19,16 +19,8 @@ import { FORFAITS, SUR_MESURE, ANCRAGE, MENTION_TVA, euros } from '@/content/off
 export default function Tarifs() {
   return (
     <section id="tarifs" data-ground="jour" className="border-b border-filet">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-24 md:py-32">
-        <span className="mono text-gris">06 — Tarifs</span>
-        <h2 className="h2 text-encre mt-4">Et combien ça coûte</h2>
-        <p className="mt-6 mesure text-gris">
-          Cinq prix fermes, du site le plus simple au projet le plus construit. Le prix affiché est le prix facturé. Ce qui n'est pas
-          inclus est écrit sous chaque forfait, dans le même corps de texte que ce
-          qui l'est.
-        </p>
-
-        <div className="carte overflow-hidden mt-14 grid md:grid-cols-2 xl:grid-cols-4 border-t border-l border-filet">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-16 md:py-20">
+        <div className="cascade carte overflow-hidden grid md:grid-cols-2 xl:grid-cols-4 border-t border-l border-filet">
           {FORFAITS.map((f) => (
             <article key={f.id} className="border-r border-b border-filet p-7 flex flex-col">
               <div className="flex items-baseline justify-between gap-3">

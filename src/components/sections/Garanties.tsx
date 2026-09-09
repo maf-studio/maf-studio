@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { GARANTIES, NON_GARANTI } from '@/content/offres'
 
 /**
@@ -11,19 +12,20 @@ import { GARANTIES, NON_GARANTI } from '@/content/offres'
  * Le soleil redescend : les ombres réapparaissent à partir d'ici.
  */
 
-export default function Garanties() {
+export default function Garanties({ limite }: { limite?: number }) {
+  const liste = limite ? GARANTIES.slice(0, limite) : GARANTIES
   return (
     <section id="garanties" data-ground="jour" className="border-b border-filet">
       <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-24 md:py-32">
-        <span className="mono text-gris">08 — Garanties</span>
+        <span className="mono text-gris">Garanties</span>
         <h2 className="h2 text-encre mt-4">Ce que je signe</h2>
         <p className="mt-6 mesure text-gris">
           Je n'ai pas de note Google ni de témoignages à vous montrer. J'ai sept
           engagements écrits, et vous pouvez les faire figurer au contrat.
         </p>
 
-        <ol className="mt-14 border-t border-filet">
-          {GARANTIES.map((g, i) => (
+        <ol className="cascade mt-12 border-t border-filet">
+          {liste.map((g, i) => (
             <li key={g.titre} className="grid md:grid-cols-12 gap-4 md:gap-8 py-9 border-b border-filet">
               <span className="mono text-gris md:col-span-1 tabular-nums text-base md:text-lg">
                 {String(i + 1).padStart(2, '0')}
@@ -34,12 +36,18 @@ export default function Garanties() {
           ))}
         </ol>
 
-        {/* Au même endroit et dans le même corps de texte que les garanties.
-            Personne ne peut tenir ces promesses, et celui qui les donne le sait. */}
-        <div className="mt-9">
-          <h3 className="mono text-gris">Ce qui n'est pas garanti</h3>
-          <p className="mt-3 mesure text-encre leading-relaxed">{NON_GARANTI}</p>
-        </div>
+        {limite ? (
+          <Link to="/tarifs" className="pilule mono mono-md inline-block mt-8 px-7 py-3.5 border border-filet text-encre hover:border-encre transition-colors">
+            Les sept engagements
+          </Link>
+        ) : (
+          /* Au même endroit et dans le même corps de texte que les garanties.
+             Personne ne peut tenir ces promesses, et celui qui les donne le sait. */
+          <div className="mt-9">
+            <h3 className="mono text-gris">Ce qui n'est pas garanti</h3>
+            <p className="mt-3 mesure text-encre leading-relaxed">{NON_GARANTI}</p>
+          </div>
+        )}
       </div>
     </section>
   )

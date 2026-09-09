@@ -1,50 +1,38 @@
 import SEO from '@/components/SEO'
 import JsonLd from '@/components/JsonLd'
-import Soleil from '@/components/Soleil'
 import Hero from '@/components/sections/Hero'
-import Preuves from '@/components/sections/Preuves'
-import Realisations from '@/components/sections/Realisations'
+import Chiffres from '@/components/sections/Chiffres'
 import Offre from '@/components/sections/Offre'
-import Livrables from '@/components/sections/Livrables'
-import Tarifs from '@/components/sections/Tarifs'
-import Options from '@/components/sections/Options'
+import StudioBref from '@/components/sections/StudioBref'
+import RealisationsResume from '@/components/sections/RealisationsResume'
+import TarifsResume from '@/components/sections/TarifsResume'
 import Garanties from '@/components/sections/Garanties'
-import Methode from '@/components/sections/Methode'
-import Studio from '@/components/sections/Studio'
-import FAQ from '@/components/sections/FAQ'
 import Contact from '@/components/sections/Contact'
 
 /**
- * Douze sections ancrées. L'ordre n'est pas décoratif : la preuve arrive
- * avant l'offre, l'offre avant le prix, le prix avant les garanties.
+ * ACCUEIL — court, volontairement.
  *
- * ATTENTION : #tarifs est le zénith de la course du soleil. Sa position est
- * mesurée au chargement par src/lib/soleil.tsx. Déplacer cette section fait
- * atterrir le point de bascule ailleurs, silencieusement — aucune erreur,
- * aucun test rouge.
+ * La version précédente empilait douze sections sur dix-neuf mille pixels :
+ * personne ne lit ça, et une page unique ne peut viser qu'un seul groupe de
+ * requêtes. Le détail vit désormais sur /tarifs et /realisations, et
+ * l'accueil ne fait plus que qualifier, prouver et orienter.
  *
- * Alternance stricte densité / vide : Livrables, Tarifs et Questions sont
- * délibérément denses. C'est cette densité qui fait lire le vide des sections
- * voisines comme de la maîtrise, et non comme de l'absence.
+ * L'ordre suit celui qui marche : on annonce le prix et le délai avant de
+ * parler de soi, on prouve avant de vendre, et on ferme sur un contact.
  */
 export default function Home() {
   return (
     <>
       <SEO />
       <JsonLd />
-      <Soleil />
       <main id="contenu">
         <Hero />
-        <Preuves />
-        <Realisations />
+        <Chiffres />
         <Offre />
-        <Livrables />
-        <Tarifs />
-        <Options />
-        <Garanties />
-        <Methode />
-        <Studio />
-        <FAQ />
+        <StudioBref />
+        <RealisationsResume />
+        <TarifsResume />
+        <Garanties limite={3} />
         <Contact />
       </main>
     </>
