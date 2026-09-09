@@ -18,31 +18,30 @@ export default function Realisations() {
   return (
     <section id="realisations" data-ground="jour" className="border-b border-filet">
       <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-16 md:py-20">
-        {/* ── Sites livrés de bout en bout ───────────────────── */}
-        <div className="cascade carte overflow-hidden border border-filet grid sm:grid-cols-2 lg:grid-cols-4">
-          {REALISATIONS.map((p, i) => (
-            <a
-              key={p.nom}
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group p-8 flex flex-col hover:bg-penombre transition-colors border-filet
-                ${i < REALISATIONS.length - 1 ? 'border-b sm:border-b-0 sm:border-r' : ''}
-                ${i < 2 ? 'sm:border-b lg:border-b-0' : ''}
-                ${i === 1 ? 'sm:border-r-0 lg:border-r' : ''}`}
-            >
-              <div className="mono text-gris">{p.secteur}</div>
-              <h3 className="mt-2 h3 text-encre text-2xl">
-                {p.nom}
-              </h3>
-              <p className="mt-4 text-[0.95rem] text-gris leading-relaxed grow">{p.fait}</p>
-              <span className="mono mt-6 pt-5 border-t border-filet break-all"
-                style={{ color: 'var(--accent)' }}>
-                {propre(p.url)}
-              </span>
-            </a>
+        <ul className="cascade grid gap-16 md:gap-24">
+          {REALISATIONS.map((p) => (
+            <li key={p.nom}>
+              <a href={p.url} target="_blank" rel="noopener noreferrer" className="group block">
+                <div className="carte overflow-hidden border border-filet transition-transform duration-500 group-hover:-translate-y-1.5"
+                     style={{ backgroundColor: p.teinte }}>
+                  <img src={p.image} alt={`Page d'accueil du site ${p.nom}`}
+                       width={1600} height={1000} loading="lazy" decoding="async"
+                       className="w-full aspect-[16/10] object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]" />
+                </div>
+                <div className="mt-6 grid md:grid-cols-12 gap-4 md:gap-8 items-baseline">
+                  <div className="md:col-span-4">
+                    <p className="mono text-gris">{p.secteur} · {p.nature}</p>
+                    <h2 className="h3 text-encre text-2xl md:text-3xl mt-2">{p.nom}</h2>
+                  </div>
+                  <p className="md:col-span-6 text-gris leading-relaxed">{p.fait}</p>
+                  <p className="md:col-span-2 mono md:text-right break-all" style={{ color: 'var(--accent)' }}>
+                    {propre(p.url)} ↗
+                  </p>
+                </div>
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {/* ── Interventions partielles ────────────────────────
             Étiquetées comme telles : c'est ce qui rend le reste crédible. */}
