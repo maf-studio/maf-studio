@@ -18,21 +18,21 @@ const CHIFFRES = [
 
 export default function Chiffres() {
   return (
-    <section data-ground="jour" className="border-b border-filet">
+    <section data-sol="papier" className="border-b bord">
       <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw]">
         <dl className="cascade grid sm:grid-cols-2 lg:grid-cols-4">
           {CHIFFRES.map((c, i) => (
             <div key={c.legende}
-                 className={`py-10 lg:py-14 lg:px-8 lg:first:pl-0 lg:last:pr-0 border-filet ${
+                 className={`py-10 lg:py-14 lg:px-8 lg:first:pl-0 lg:last:pr-0 bord ${
                    i > 0 ? 'border-t lg:border-t-0 lg:border-l' : ''
                  } ${i === 1 ? 'sm:border-t-0 sm:border-l lg:border-l' : ''} ${i === 3 ? 'sm:border-l' : ''}`}>
               <dt className="flex items-baseline gap-2">
-                <span className="text-encre" style={{ fontVariationSettings: "'wdth' 110, 'wght' 800", fontSize: 'clamp(2.6rem,4.4vw,3.6rem)', lineHeight: 1 }}>
+                <span className="sur" style={{ fontVariationSettings: "'wdth' 110, 'wght' 800", fontSize: 'clamp(2.6rem,4.4vw,3.6rem)', lineHeight: 1 }}>
                   {c.valeur}
                 </span>
-                <span className="mono text-gris">{c.unite}</span>
+                <span className="mono sourd">{c.unite}</span>
               </dt>
-              <dd className="mt-4 text-[0.95rem] text-gris leading-relaxed max-w-[30ch]">{c.legende}</dd>
+              <dd className="mt-4 text-[0.95rem] sourd leading-relaxed max-w-[30ch]">{c.legende}</dd>
             </div>
           ))}
         </dl>

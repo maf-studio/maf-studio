@@ -51,11 +51,11 @@ export default function App() {
       <Navigation />
       {/* Premier élément focusable de la page. */}
       <a href="#contenu"
-         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-encre focus:text-jour focus:px-5 focus:py-3 mono">
+         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-encre focus:sur focus:px-5 focus:py-3 mono">
         Aller au contenu
       </a>
 
-      <div className="min-h-screen bg-jour">
+      <div className="min-h-screen bg-papier">
         <Navbar />
         <Suspense fallback={<div className="min-h-[60svh]" />}>
           <Routes>

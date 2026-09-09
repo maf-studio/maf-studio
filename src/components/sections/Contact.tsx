@@ -79,31 +79,31 @@ export default function Contact() {
   }
 
   const champ =
-    'w-full bg-transparent border-0 border-b border-filet px-0 py-3 text-encre placeholder-gris focus:outline-none focus:border-b-2 transition-[border-color,border-width] duration-150'
+    'w-full bg-transparent border-0 border-b bord px-0 py-3 sur placeholder-gris focus:outline-none focus:border-b-2 transition-[border-color,border-width] duration-150'
 
   return (
-    <section id="contact" data-ground="jour" className="border-b border-filet">
+    <section id="contact" data-sol="papier" className="border-b bord">
       <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-24 md:py-32">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <span className="mono text-gris">12 — Contact</span>
-            <h2 className="h2 text-encre mt-4">Parlons de votre projet</h2>
+            <span className="mono sourd">12 — Contact</span>
+            <h2 className="h2 sur mt-4">Parlons de votre projet</h2>
 
             <div className="mt-10 flex flex-col sm:flex-row lg:flex-col gap-3">
-              <BookingButton className="pilule bg-encre text-jour mono mono-md px-7 py-4 text-center">
+              <BookingButton className="pilule bg-encre sur mono action px-7 py-4 text-center">
                 Réserver 20 minutes
               </BookingButton>
               <a href="#formulaire"
-                 className="pilule mono mono-md px-7 py-4 text-center text-encre border border-filet hover:border-encre transition-colors">
+                 className="pilule mono action px-7 py-4 text-center sur border bord hover:bord-fort transition-colors">
                 Recevoir un devis
               </a>
             </div>
 
-            <div className="mt-10 pt-6 border-t border-filet space-y-1.5">
-              <a href={`tel:${TEL_LIEN}`} className="mono block py-2 text-encre">{TEL}</a>
-              <a href={`mailto:${EMAIL}`} className="mono block py-2 text-encre break-all">{EMAIL}</a>
+            <div className="mt-10 pt-6 border-t bord space-y-1.5">
+              <a href={`tel:${TEL_LIEN}`} className="mono block py-2 sur">{TEL}</a>
+              <a href={`mailto:${EMAIL}`} className="mono block py-2 sur break-all">{EMAIL}</a>
             </div>
-            <p className="mt-4 text-[0.95rem] text-gris leading-relaxed">
+            <p className="mt-4 text-[0.95rem] sourd leading-relaxed">
               Je réponds sous un jour ouvré, à toute demande, client ou non.
             </p>
           </div>
@@ -113,9 +113,9 @@ export default function Contact() {
                 formulaire a été remplacé par une confirmation. */}
             <div aria-live="polite">
               {etat === 'ok' ? (
-                <div className="carte border border-filet p-8">
-                  <h3 className="h3 text-encre text-2xl">Message reçu.</h3>
-                  <p className="mt-3 text-gris">
+                <div className="border bord p-8">
+                  <h3 className="h3 sur text-2xl">Message reçu.</h3>
+                  <p className="mt-3 sourd">
                     Je vous réponds sous un jour ouvré{form.email ? ` à ${form.email}` : ''}.
                   </p>
                 </div>
@@ -130,19 +130,19 @@ export default function Contact() {
 
                   <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                     <div>
-                      <label htmlFor="nom" className="mono block text-gris mb-1">Votre nom</label>
+                      <label htmlFor="nom" className="mono block sourd mb-1">Votre nom</label>
                       <input id="nom" name="nom" required autoComplete="name" value={form.nom} className={champ}
                              onChange={(e) => setForm({ ...form, nom: e.target.value })} />
                     </div>
                     <div>
-                      <label htmlFor="email" className="mono block text-gris mb-1">Votre email</label>
+                      <label htmlFor="email" className="mono block sourd mb-1">Votre email</label>
                       <input id="email" name="email" type="email" required autoComplete="email" value={form.email} className={champ}
                              onChange={(e) => setForm({ ...form, email: e.target.value })} />
                     </div>
                   </div>
 
                   <div className="mt-6">
-                    <label htmlFor="besoin" className="mono block text-gris mb-1">Votre besoin</label>
+                    <label htmlFor="besoin" className="mono block sourd mb-1">Votre besoin</label>
                     <select id="besoin" name="besoin" value={form.besoin} className={champ}
                             onChange={(e) => setForm({ ...form, besoin: e.target.value })}>
                       {BESOINS.map((b) => <option key={b} value={b}>{b}</option>)}
@@ -150,18 +150,18 @@ export default function Contact() {
                   </div>
 
                   <div className="mt-6">
-                    <label htmlFor="message" className="mono block text-gris mb-1">Où vous en êtes</label>
+                    <label htmlFor="message" className="mono block sourd mb-1">Où vous en êtes</label>
                     <textarea id="message" name="message" required rows={5} value={form.message} className={`${champ} resize-y`}
                               placeholder="Ex : j'ai un site WordPress de 2019 que je n'arrive plus à modifier et je perds des demandes de devis."
                               onChange={(e) => setForm({ ...form, message: e.target.value })} />
                   </div>
 
                   <button type="submit" disabled={etat === 'envoi'}
-                          className="pilule mt-8 w-full bg-encre text-jour mono mono-md px-6 py-4 disabled:opacity-50">
+                          className="pilule mt-8 w-full bg-encre sur mono action px-6 py-4 disabled:opacity-50">
                     {etat === 'envoi' ? 'Envoi en cours' : 'Envoyer'}
                   </button>
 
-                  <p className="mt-5 text-[0.85rem] text-gris leading-relaxed">
+                  <p className="mt-5 text-[0.85rem] sourd leading-relaxed">
                     En envoyant ce formulaire, vous acceptez que vos coordonnées soient
                     utilisées pour vous répondre. Elles ne sont ni revendues, ni utilisées
                     à d'autres fins.{' '}

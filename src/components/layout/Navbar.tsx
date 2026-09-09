@@ -3,7 +3,12 @@ import { Link, NavLink } from 'react-router-dom'
 import BookingButton from '@/components/BookingButton'
 
 /**
- * En-tête 72 px.
+ * En-tête 72 px, sur le mur, sur toutes les pages.
+ *
+ * Elle ne change pas de sol au défilement : une barre qui s'éclaircit en
+ * cours de route demande soit du JavaScript, soit une astuce de timeline qui
+ * laisse un état illisible là où elle n'est pas supportée. Une barre sombre
+ * permanente est lisible partout, et elle prolonge le mur du premier écran.
  *
  * Le sommaire de douze traits a disparu avec la page unique : il n'avait de
  * sens que sur une page qui contenait tout. Il reste sa meilleure idée, la
@@ -40,15 +45,14 @@ export default function Navbar() {
   }, [ouvert])
 
   const lien = ({ isActive }: { isActive: boolean }) =>
-    `mono py-3 transition-colors ${isActive ? 'text-encre' : 'text-gris hover:text-encre'}`
+    `nav-lien py-3 transition-colors ${isActive ? 'sur' : 'sourd hover:sur'}`
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 h-[72px] bg-jour border-b border-filet">
+    <header data-sol="mur" className="fixed top-0 inset-x-0 z-50 h-[72px] bg-mur border-b bord">
       <nav className="h-full max-w-[1400px] mx-auto px-6 md:px-[6vw] flex items-center justify-between gap-6"
            aria-label="Navigation principale">
         <Link to="/" viewTransition
-              className="text-encre text-lg tracking-tight shrink-0"
-              style={{ fontVariationSettings: "'wdth' 118, 'wght' 800" }}>
+              className="logotype sur shrink-0">
           MAF STUDIO
         </Link>
 
@@ -60,7 +64,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        <BookingButton className="pilule hidden sm:inline-flex bg-encre text-jour mono px-5 py-3 shrink-0 whitespace-nowrap">
+        <BookingButton className="action hidden sm:inline-flex px-5 py-3 shrink-0 whitespace-nowrap bg-papier"
+          style={{ color: 'var(--color-mur)' }}>
           Réserver 20 minutes
         </BookingButton>
 
@@ -71,10 +76,10 @@ export default function Navbar() {
           aria-label={ouvert ? 'Fermer le menu' : 'Ouvrir le menu'}
           aria-expanded={ouvert}
           aria-controls="menu-mobile"
-          className="md:hidden w-11 h-11 -mr-2 flex flex-col items-center justify-center gap-[5px]"
+          className="md:hidden w-11 h-11 -mr-2 flex flex-col items-center justify-center gap-[5px] sur"
         >
-          <span className={`w-6 h-px bg-encre transition-transform ${ouvert ? 'translate-y-[3px] rotate-[24deg]' : ''}`} />
-          <span className={`w-6 h-px bg-encre transition-transform ${ouvert ? '-translate-y-[3px] -rotate-[24deg]' : ''}`} />
+          <span className={`w-6 h-px transition-transform ${ouvert ? 'translate-y-[3px] rotate-[24deg]' : ''}`} style={{ background: 'currentColor' }} />
+          <span className={`w-6 h-px transition-transform ${ouvert ? '-translate-y-[3px] -rotate-[24deg]' : ''}`} style={{ background: 'currentColor' }} />
         </button>
       </nav>
 
@@ -84,12 +89,12 @@ export default function Navbar() {
       <div aria-hidden="true" className="progression" />
 
       <div id="menu-mobile" hidden={!ouvert}
-           className="md:hidden bg-jour border-b border-filet px-6 pb-8 pt-2">
+           className="md:hidden bg-papier border-b bord px-6 pb-8 pt-2" data-sol="papier">
         <Link to="/" viewTransition onClick={() => setOuvert(false)}
-              className="block py-3.5 border-b border-filet text-encre mono">Accueil</Link>
+              className="block py-3.5 border-b bord sur nav-lien">Accueil</Link>
         {LIENS.map((l) => (
           <NavLink key={l.to} to={l.to} viewTransition onClick={() => setOuvert(false)}
-                   className="block py-3.5 border-b border-filet text-encre mono">
+                   className="block py-3.5 border-b bord sur nav-lien">
             {l.label}
           </NavLink>
         ))}

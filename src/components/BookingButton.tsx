@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { CAL_LINK } from '@/site'
 
 /**
@@ -34,10 +34,12 @@ function chargerCal(): Promise<void> {
 export default function BookingButton({
   children,
   className = '',
+  style,
   link = CAL_LINK,
 }: {
   children: ReactNode
   className?: string
+  style?: CSSProperties
   link?: string
 }) {
   async function ouvrir() {
@@ -53,7 +55,7 @@ export default function BookingButton({
   }
 
   return (
-    <button type="button" className={className} onClick={ouvrir}>
+    <button type="button" className={className} style={style} onClick={ouvrir}>
       {children}
     </button>
   )

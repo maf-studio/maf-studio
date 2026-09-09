@@ -183,7 +183,7 @@ export interface Abonnement {
   nom: string
   prix: number
   unite: string
-  /** Le calcul écrit sous la carte : il doit être refaisable par le prospect. */
+  /** Le calcul écrit sous la : il doit être refaisable par le prospect. */
   calcul: string
   inclus: string[]
   limite?: string

@@ -18,42 +18,42 @@ const TOUS = [...FORFAITS, SUR_MESURE]
 
 export default function TarifsResume() {
   return (
-    <section id="tarifs" data-ground="jour" className="border-b border-filet">
+    <section id="tarifs" data-sol="papier" className="border-b bord">
       <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-20 md:py-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <span className="mono text-gris">Tarifs</span>
-            <h2 className="h2 text-encre mt-4 max-w-[18ch]">Des prix fermes, affichés</h2>
+            <span className="mono sourd">Tarifs</span>
+            <h2 className="h2 sur mt-4 max-w-[18ch]">Des prix fermes, affichés</h2>
           </div>
-          <p className="mesure text-gris">
+          <p className="mesure sourd">
             Le prix affiché est le prix facturé. Aucun « à partir de », aucune
             remise, et ce qui n'est pas inclus est écrit sous chaque forfait.
           </p>
         </div>
 
-        <ul className="cascade carte overflow-hidden mt-12 grid sm:grid-cols-2 xl:grid-cols-5 border-t border-l border-filet">
+        <ul className="cascade overflow-hidden mt-12 grid sm:grid-cols-2 xl:grid-cols-5 border-t border-l bord">
           {TOUS.map((f) => (
-            <li key={f.id} className="border-r border-b border-filet p-6">
+            <li key={f.id} className="border-r border-b bord p-6">
               <div className="flex items-baseline justify-between gap-2">
-                <h3 className="h3 text-encre text-lg">{f.nom}</h3>
+                <h3 className="h3 sur text-lg">{f.nom}</h3>
                 {'recommande' in f && f.recommande && (
                   <span className="mono shrink-0" style={{ color: 'var(--accent)' }}>Conseillé</span>
                 )}
               </div>
-              <p className="mt-4 text-encre" style={{ fontVariationSettings: "'wdth' 110, 'wght' 800", fontSize: '1.9rem', lineHeight: 1 }}>
+              <p className="mt-4 sur" style={{ fontVariationSettings: "'wdth' 110, 'wght' 800", fontSize: '1.9rem', lineHeight: 1 }}>
                 {euros(f.prix)} €
               </p>
-              <p className="mono mt-2 text-gris">HT · {f.delai} j ouvrés</p>
-              <p className="mt-4 text-[0.9rem] text-gris leading-relaxed">{f.cible.split('.')[0]}.</p>
+              <p className="mono mt-2 sourd">HT · {f.delai} j ouvrés</p>
+              <p className="mt-4 text-[0.9rem] sourd leading-relaxed">{f.cible.split('.')[0]}.</p>
             </li>
           ))}
         </ul>
 
         <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
-          <Link to="/tarifs" className="pilule mono mono-md px-7 py-3.5 bg-encre text-jour">
+          <Link to="/tarifs" className="pilule mono action px-7 py-3.5 bg-encre sur">
             Voir le détail de chaque forfait
           </Link>
-          <p className="mono text-gris">{MENTION_TVA}</p>
+          <p className="mono sourd">{MENTION_TVA}</p>
         </div>
       </div>
     </section>

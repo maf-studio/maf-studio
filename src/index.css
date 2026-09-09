@@ -3,132 +3,150 @@
 @import "@fontsource-variable/martian-mono/wdth.css";
 
 /* ============================================================
-   MAF STUDIO — HÉLIOGRAPHE
+   MAF STUDIO — LE MUR ET LA CASSE
    ------------------------------------------------------------
-   Trois lois, et rien d'autre.
+   Le principe tient en une phrase qu'on peut dire à un prospect :
+   ON MONTRE SUR LE MUR, ON LIT SUR LE PAPIER.
 
-   1. UNE SOURCE. Il n'y a qu'une lumière. Tout ce qui est debout
-      projette dans la même direction, au même instant, avec la
-      même longueur relative. Un élément qui a sa propre ombre est
-      un bug. Conséquence : rien n'émet, donc aucun dégradé, aucun
-      halo, aucune ombre CSS diffuse. Le système s'interdit seul.
+   Le site alterne deux sols. Le MUR porte tout ce qui montre :
+   hero, réalisations, clôture. Le PAPIER porte tout ce qui se lit
+   et s'engage : offre, prix, garanties, méthode, questions.
 
-   2. LE SCROLL EST L'HEURE. La position du scroll EST la position
-      du soleil. Zénith exactement sur #tarifs : plus aucune ombre
-      à cet endroit. La page a une arche et un point de bascule.
+   Ce n'est pas une préférence esthétique, c'est une mesure. Sur
+   l'ancien fond clair, trois des quatre captures clientes
+   ressortaient à 1,05:1 — la valeur exacte de la page. Ce n'étaient
+   pas des objets posés dessus, c'étaient des morceaux de page. Sur
+   le mur, les mêmes fichiers passent à 15:1 sans qu'un pixel change.
 
-   3. CE QUI BOUGE, C'EST L'OMBRE, JAMAIS LE TEXTE. Le texte est
-      peint dès la première frame, à sa taille et son opacité
-      définitives. Ce qui s'anime est un clone aria-hidden derrière
-      lui. LCP acquis tout de suite, aucun CLS, page complète pour
-      un crawler, et prefers-reduced-motion ne vide rien.
-
-   RÈGLE DE DISCRÉTION : la métaphore n'est jamais nommée dans un
-   texte visible. Ce vocabulaire vit ici, dans les classes, et nulle
-   part sur la page.
-
-   Qu'est-ce qui est debout ? Les H1/H2, les plaques, les captures,
-   les boutons pleins, le portrait, les traits du sommaire. Tout le
-   reste est couché sur le plan et ne projette rien : filets,
-   tableaux, listes, corps de texte. Un élément debout sans ombre
-   est un bug ; un élément couché avec une ombre aussi.
+   ET L'AGENCE N'A PAS DE COULEUR : ELLE A CELLE DE SES CLIENTS.
+   Le bleu MAF ne peint rien, il signale. Les seules surfaces
+   colorées du site sont prélevées sur les captures qu'elles portent.
    ============================================================ */
 
 @theme {
-  /* SURFACES */
-  --color-jour:     #F6F7F9;
-  --color-penombre: #ECEEF2;
-  --color-nuit:     #0B1020;
+  /* ═══ LES DEUX SOLS ═══ */
+  --color-mur:          #131A2E;
+  --color-creux:        #0B1020;
+  --color-papier:       #F2EFE9;
+  /* 1,12:1 sur le papier. Zébrure de tableau et fond de champ,
+     JAMAIS un état de survol : l'écart est sous le seuil de
+     perception. Le survol est traité par le déplacement. */
+  --color-papier-creux: #E7E2D9;
 
-  /* ENCRES */
-  --color-encre:    #131A2E;
-  --color-gris:     #5C6577;
+  /* ═══ LES ENCRES ═══ */
+  --color-encre:      #131A2E;
+  --color-gris:       #5C6577;
+  --color-gris-nuit:  #9AA3B8;
 
-  /* L'OMBRE — jamais noire : c'est le sol privé de soleil, teinté par le ciel.
-     Valeur volontairement basse en contraste. Une ombre portée par un titre
-     de 9,5 rem couvre une surface énorme : à 3:1 elle devient un second titre
-     et rend illisible le texte qui la traverse. Elle doit se lire comme une
-     forme, pas comme du contenu. */
-  --color-ombre:    #D5D9E2;
+  /* ═══ L'ACCENT ═══
+     Remplace #2F5BEA, qui plafonnait à 3,50:1 et échouait donc en
+     corps de texte. L'outremer passe AA partout. */
+  --color-outremer:      #1E1EC0;
+  --color-outremer-nuit: #8A93FF;
 
-  /* L'ACCENT — un seul, moins de 3 % des pixels */
-  --color-soleil:       #2F5BEA;
-  --color-soleil-encre: #1D3FC4;
-  /* Sur le fond nuit, le bleu de jour tombe à 3,4:1. Version éclaircie,
-     mesurée à 5,7:1. */
-  --color-soleil-nuit:  #5F86FF;
+  /* ═══ FILETS — deux poids par sol ═══
+     L'ancien filet unique tombait à 1,30:1, sous le seuil de
+     perception, et portait pourtant 74 bordures. */
+  --color-filet:           rgba(19, 26, 46, 0.22);
+  --color-filet-fort:      rgba(19, 26, 46, 0.50);
+  --color-filet-nuit:      rgba(242, 239, 233, 0.20);
+  --color-filet-nuit-fort: rgba(242, 239, 233, 0.40);
+  --color-lisere:          rgba(242, 239, 233, 0.10);
 
-  /* FILETS */
-  --color-filet:      rgba(19, 26, 46, 0.13);
-  --color-filet-nuit: rgba(246, 247, 249, 0.14);
+  --radius: 0px;
+  --radius-cadre: 10px;
+
+  /* L'unique angle du site. Direction des ombres, vecteur du
+     décalage au survol (rapport 0,445 = tan 24°), inclinaison de la
+     pastille du cadre, orientation du lavis (114 = 90 + 24). */
+  --angle: 24deg;
 
   --font-sans: 'Mona Sans Variable', system-ui, sans-serif;
   --font-mono: 'Martian Mono Variable', ui-monospace, monospace;
 
-  --radius: 12px;
-
-  /* L'angle unique du site. Il régit la direction des ombres, le
-     biseau des plaques et le sens des décalages au survol. 24 deg est
-     volontairement rasant : à 45 on retombe sur le chevron de template. */
-  --angle: 24deg;
-
   --ease-entree: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-sortie: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ═══ PROFONDEUR ═══
+     L'ancienne loi disait : une source unique, donc aucune ombre.
+     La conclusion ne suivait pas de la prémisse. Un mur éclairé par
+     une source unique EST un dégradé. Une source unique interdit les
+     halos contradictoires, pas l'ombre portée.
+     La seconde couche de --elev-2, à flou nul, est un CONTACT AU
+     SOL : sans elle, l'objet flotte et fait maquette. */
+  --elev-1:     0 1px 0 rgb(19 26 46 / .06), 0 8px 20px -12px rgb(19 26 46 / .22);
+  --elev-2:     14px 32px 56px -28px rgb(19 26 46 / .22), 2px 4px 0 rgb(19 26 46 / .05);
+  --elev-mur:   26px 58px 90px -34px rgb(0 0 0 / .62);
+  --elev-mur-2: 34px 74px 110px -30px rgb(0 0 0 / .70);
 }
 
-/* ------------------------------------------------------------
-   L'ACCENT PAR RÔLE, JAMAIS PAR VALEUR
-   --color-soleil ne passe qu'à 3,5:1 sur --color-jour : il échoue en
-   corps de texte. La distinction sera oubliée à la première
-   modification faite dans six mois, donc on la retire des mains du
-   développeur. Les composants ne connaissent que le rôle.
-
-     --accent        tout texte d'accent, tout anneau de focus
-     --accent-large  UNIQUEMENT texte >= 24px bold / >= 32px regular,
-                     filets et états d'interface
-   ------------------------------------------------------------ */
+/* ─────────────────────────────────────────────────────────────
+   LES DEUX SOLS, ET CE QUI EN DÉCOULE
+   Un composant ne connaît jamais la couleur du sol sur lequel il
+   est posé : il lit --sur, --sourd, --trait et --accent.
+   ───────────────────────────────────────────────────────────── */
 :root,
-[data-ground="jour"]     { --accent: var(--color-soleil-encre); --accent-large: var(--color-soleil); }
-[data-ground="penombre"] { --accent: var(--color-soleil-encre); --accent-large: var(--color-soleil); }
-[data-ground="nuit"]     { --accent: var(--color-soleil-nuit);  --accent-large: var(--color-soleil-nuit); }
+[data-sol="papier"] {
+  --sur:        var(--color-encre);
+  --sourd:      var(--color-gris);
+  --trait:      var(--color-filet);
+  --trait-fort: var(--color-filet-fort);
+  --accent:     var(--color-outremer);
+}
+[data-sol="mur"] {
+  --sur:        var(--color-papier);
+  /* #5C6577 tombe à 3,02:1 sur le mur : il lui faut sa variante. */
+  --sourd:      var(--color-gris-nuit);
+  --trait:      var(--color-filet-nuit);
+  --trait-fort: var(--color-filet-nuit-fort);
+  /* #1E1EC0 sur le mur donne 1,65:1 : interdit, variante obligatoire. */
+  --accent:     var(--color-outremer-nuit);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LA TEINTE CLIENTE PAR RÔLE, JAMAIS PAR VALEUR
+   Le bleu MAF passe AA partout et n'a plus besoin de mécanisme.
+   Les teintes clientes, si. Mesuré sur le mur :
+     lime   15,55:1  -> texte libre
+     corail  4,45:1  -> texte >= 24px, ou surface
+     teal    3,84:1  -> INTERDIT en texte, surface seule
+     violet  4,34:1  -> texte >= 24px, ou surface
+   Un développeur qui écrit --t-accent sur un paragraphe de 16px
+   casse l'accessibilité sans le voir. D'où les deux rôles :
+     --t-accent        surfaces uniquement (seuil 3:1)
+     --t-accent-texte  tout texte, quelle que soit sa taille
+   Valeurs relevées par analyse de saturation sur les .webp réels.
+   ───────────────────────────────────────────────────────────── */
+[data-projet="black-academy"] { --t-fond:#080808; --t-accent:#ECFF1C; --t-accent-texte:#ECFF1C; }
+[data-projet="avancia"]       { --t-fond:#F8F0E8; --t-accent:#E34E36; --t-accent-texte:#E34E36; }
+[data-projet="campus"]        { --t-fond:#F8F0F0; --t-accent:#1A8295; --t-accent-texte:#3FAEBF; }
+[data-projet="apesoft"]       { --t-fond:#F8F8F8; --t-accent:#B747F8; --t-accent-texte:#D69CF5; }
 
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
 
-  html {
-    scroll-behavior: smooth;
-    /* Hauteur réelle de l'en-tête. Si l'en-tête change, ceci change. */
-    scroll-padding-top: 72px;
-  }
+  /* Détail de huit pixels que tout le monde attribue à la maîtrise. */
+  * { font-variant-numeric: tabular-nums; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
   body {
-    background-color: var(--color-jour);
+    background-color: var(--color-papier);
     color: var(--color-encre);
     font-family: var(--font-sans);
-    font-variation-settings: 'wdth' 100;
-    font-size: 17px;
-    line-height: 1.55;
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
-  @media (min-width: 768px) { body { font-size: 18px; } }
 
-  ::selection { background-color: var(--color-encre); color: var(--color-jour); }
+  p { text-wrap: pretty; }
 
-  /* Jamais outline sur un élément clippé : il serait rogné avec lui. */
-  :focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--accent);
-  }
+  ::selection { background-color: var(--color-outremer); color: var(--color-papier); }
 
-  /* ----------------------------------------------------------
-     PREFERS-REDUCED-MOTION — une deuxième maquette, pas un
-     interrupteur. Le soleil est figé BAS, pas court : L = 1.6,
-     angle -30deg. Des ombres longues, franchement cisaillées, et
-     immobiles. Un repli à L = 0.42 produirait exactement le hard
-     shadow de 2019 que cette direction évite.
-     ---------------------------------------------------------- */
+  :focus-visible { outline: none; box-shadow: 0 0 0 2px var(--accent); }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -136,235 +154,238 @@
       transition-duration: 0.01ms !important;
     }
     html { scroll-behavior: auto; }
-    .porte > .ombre { transform: skewX(-30deg) scaleY(-1.35) !important; }
   }
 }
 
 @layer utilities {
-  /* --- TYPOGRAPHIE -------------------------------------------
-     Deux familles, trois rôles, zéro italique. Le caractère vient
-     de la largeur et du contraste d'échelle (ratio display/corps
-     proche de 9), pas de la couleur. */
+  /* ══════════════════════════════════════════════════════════
+     HUIT CRANS : 11 / 13 / 16 / 24 / 40 / 76 / 97 / 118
+     L'ancienne échelle n'en avait que deux réellement employés,
+     avec un trou mort entre 24 et 60 px. Neuf H2 identiques à
+     60 px étaient la cause de la platitude après le premier écran.
+     Zéro octet ajouté : Mona Sans déclare déjà wght 200-900 et
+     wdth 75-125, et le site n'en utilisait qu'une tranche.
+     ══════════════════════════════════════════════════════════ */
 
-  .display {
-    font-family: var(--font-sans);
-    font-variation-settings: 'wdth' 112, 'wght' 800;
-    font-size: clamp(2.35rem, 7.6vw, 8rem);
-    line-height: 0.92;
-    letter-spacing: -0.038em;
-  }
-  /* Sous 480px une largeur 118 déborde : on resserre. */
-  @media (max-width: 479px) { .display { font-variation-settings: 'wdth' 92, 'wght' 800; } }
-
-  /* En petit écran le titre se replie sur quatre lignes, et un interligne de
-     0,84 fait heurter l'accent de « OUVRÉS » la ligne du dessus. On desserre
-     juste assez pour dégager les capitales accentuées. */
-  @media (max-width: 767px) { .display { line-height: 1.0; } }
-
-  .h2 {
-    font-family: var(--font-sans);
-    font-variation-settings: 'wdth' 106, 'wght' 780;
-    font-size: clamp(2.1rem, 4.2vw, 3.8rem);
-    line-height: 1.0;
-    letter-spacing: -0.032em;
-  }
-
-  .h3 {
-    font-family: var(--font-sans);
-    font-variation-settings: 'wdth' 106, 'wght' 700;
-    line-height: 1.05;
-    letter-spacing: -0.018em;
-  }
-
-  /* Index de section, prix, délais, plaque, libellés, SIRET, mention
-     TVA. Interdit en corps de texte, interdit au-dessus de 16px. */
+  /* 1 — MONO, 11px. Surtitres, suffixes de prix, délais, URL, SIRET,
+        mentions. RETIRÉ des boutons, de la navigation et du pied. */
   .mono {
     font-family: var(--font-mono);
     font-variation-settings: 'wdth' 87, 'wght' 500;
-    font-size: 0.6875rem;
-    line-height: 1.35;
-    letter-spacing: 0.075em;
-    text-transform: uppercase;
-  }
-  .mono-md { font-size: 0.8125rem; }
-
-  /* Le corps ne dépasse jamais 64 caractères. */
-  .mesure { max-width: 34em; }
-
-  /* --- LE GNOMON ---------------------------------------------
-     Une vraie ombre portée n'est pas une copie décalée — ça, c'est
-     le hard shadow de 2019 — c'est une copie cisaillée, étirée et
-     RETOURNÉE, projetée depuis le pied de l'objet. Le scaleY négatif
-     est délibéré : une ombre sur le sol devant un objet debout est
-     un miroir cisaillé. C'est la physique juste.
-
-     contain: layout style, jamais paint : paint découperait
-     exactement les ombres qui doivent déborder. */
-  .porte {
-    position: relative;
-    isolation: isolate;
-    contain: layout style;
+    font-size: 0.6875rem; line-height: 1.35;
+    letter-spacing: 0.075em; text-transform: uppercase;
   }
 
-  /* Le clone porte les mêmes classes que l'original, dont sa couleur de
-     texte. Sans cette surcharge sur tout le sous-arbre, l'ombre se peint en
-     encre et devient un second titre noir. */
-  .porte > .ombre,
-  .porte > .ombre * {
-    color: var(--color-ombre) !important;
-    border-color: var(--color-ombre) !important;
-    background-color: transparent !important;
+  /* 2 — LÉGENDE, 13px. Seul rang autorisé en gris. */
+  .legende { font-size: 0.8125rem; line-height: 1.5; color: var(--sourd); }
+
+  /* 3 — CORPS. Tout paragraphe est en encre PLEINE. La hiérarchie se
+        fait par la taille et la valeur, jamais par la valeur seule :
+        le site comptait 89 paragraphes gris contre 72 en encre. */
+  .mesure { max-width: 32em; }
+
+  /* 4 — H3, 24px. */
+  .h3 { font-variation-settings: 'wdth' 106, 'wght' 700; font-size: 1.5rem;
+        line-height: 1.05; letter-spacing: -0.018em; }
+
+  /* 5 — H2, 40px. Descend de 60. */
+  .h2 { font-variation-settings: 'wdth' 106, 'wght' 780;
+        font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+        line-height: 1.02; letter-spacing: -0.03em; text-wrap: balance; }
+
+  /* 6 — MANIFESTE, 76px. RATIONNÉ À TROIS EMPLOIS SUR TOUT LE SITE :
+        titre de la galerie, titre des prix, titre de clôture.
+        Un quatrième emploi le détruit. */
+  .manifeste { font-variation-settings: 'wdth' 118, 'wght' 850;
+               font-size: clamp(2.6rem, 5.3vw, 4.75rem);
+               line-height: 0.94; letter-spacing: -0.038em; text-wrap: balance; }
+
+  /* 7 — DISPLAY, 97px. */
+  .display { font-variation-settings: 'wdth' 118, 'wght' 900;
+             font-size: clamp(2.35rem, 7.6vw, 8rem);
+             line-height: 0.92; letter-spacing: -0.042em; text-wrap: balance; }
+  @media (max-width: 767px) { .display { line-height: 1.0; } }
+  @media (max-width: 479px) { .display { font-variation-settings: 'wdth' 96, 'wght' 900; } }
+
+  /* Capitales accentuées sous 0,95 d'interligne : l'accent heurte
+     la ligne du dessus. */
+  .display, .manifeste { padding-block-start: 0.05em; }
+
+  /* 8 — PRIX, 118px, ULTRA-ÉTROITE. C'est le renversement central.
+        Le prix était à 30px sous un titre de 60. Il est désormais à
+        118 sous un titre de 40 : rapport de presque trois en faveur
+        du chiffre. Même largeur que le logotype — c'est ça, une
+        identité. */
+  .prix { font-variation-settings: 'wdth' 75, 'wght' 900;
+          font-size: clamp(3.4rem, 8.2vw, 7.4rem);
+          line-height: 0.82; letter-spacing: -0.02em; }
+  .prix-petit { font-variation-settings: 'wdth' 75, 'wght' 900;
+                font-size: clamp(2.2rem, 3.4vw, 3rem); line-height: 0.85; letter-spacing: -0.02em; }
+
+  .logotype { font-variation-settings: 'wdth' 78, 'wght' 800;
+              font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* Boutons et navigation sortis du mono : « Réserver 20 minutes »
+     avait exactement le traitement de la mention TVA du pied de page. */
+  .action { font-variation-settings: 'wdth' 100, 'wght' 640;
+            font-size: 0.9375rem; letter-spacing: 0; text-transform: none; }
+  .nav-lien { font-variation-settings: 'wdth' 100, 'wght' 550; font-size: 0.9375rem; }
+
+  /* Sur le mur, une graisse s'épaissit optiquement. Correction
+     gratuite, invisible, et c'est du métier. */
+  [data-sol="mur"] .display   { font-variation-settings: 'wdth' 118, 'wght' 870; }
+  [data-sol="mur"] .manifeste { font-variation-settings: 'wdth' 118, 'wght' 820; }
+  [data-sol="mur"] .h2        { font-variation-settings: 'wdth' 106, 'wght' 750; }
+
+  /* ══════════════════════════════════════════════════════════
+     PROFONDEUR
+     ══════════════════════════════════════════════════════════ */
+  .planche { box-shadow: var(--elev-mur); }
+  [data-sol="mur"] .planche { border-top: 1px solid var(--color-lisere); }
+
+  /* L'ombre teintée : le lime de Black Academy éclaire le sol sous
+     sa planche. Profondeur et couleur réglées d'une seule
+     déclaration, à partir d'une donnée déjà dans le dépôt. */
+  .planche-teintee {
+    box-shadow:
+      0 48px 96px -32px color-mix(in oklab, var(--t-accent) 45%, transparent),
+      var(--elev-mur);
   }
 
-  /* Une image ne se peint pas avec `color`. Sans cette règle, le clone
-     affiche la photo en couleur, cisaillée : une copie, pas une ombre.
-     brightness(0) l'aplatit en silhouette, l'opacité la ramène au ton du
-     sol. */
-  .porte > .ombre img,
-  .porte > .ombre svg,
-  .porte > .ombre video {
-    filter: brightness(0);
-    opacity: 0.13;
+  .elev-1 { box-shadow: var(--elev-1); }
+  .elev-2 { box-shadow: var(--elev-2); }
+
+  /* Le lavis : la surface colorée qui manquait. La plus grande zone
+     d'accent du site était une barre de progression de 2px de haut. */
+  .lavis { background: linear-gradient(114deg,
+           color-mix(in oklab, var(--t-accent) 8%, transparent), transparent 62%); }
+
+  /* ══════════════════════════════════════════════════════════
+     LE CADRE NAVIGATEUR — dessiné en CSS, jamais en image.
+     Il fait quatre choses d'un coup : il donne un bord à Black
+     Academy qui n'en a pas sur le mur (1,16:1 mesuré), il supprime
+     l'effet capture brute, il affiche la seule preuve dont le studio
+     dispose — ouvrez-le, il est en ligne — et il porte l'identité
+     pour zéro octet d'image.
+     Pas de trois pastilles rouge-jaune-vert : imiter macOS est
+     gratuit et se voit.
+     ══════════════════════════════════════════════════════════ */
+  .cadre { border-radius: var(--radius-cadre) var(--radius-cadre) 0 0; overflow: hidden; }
+  .cadre-barre {
+    height: 34px; background: var(--color-creux);
+    border-bottom: 1px solid rgba(242, 239, 233, 0.08);
+    display: flex; align-items: center; gap: 10px; padding: 0 12px;
+  }
+  @media (max-width: 767px) { .cadre-barre { height: 28px; } }
+  /* Ici survit la signature du site : le cisaillement à 24°. */
+  .cadre-pastille {
+    width: 9px; height: 9px; flex: none;
+    background: var(--t-accent, var(--color-outremer-nuit));
+    transform: skewX(calc(-1 * var(--angle)));
   }
 
-  .porte > .ombre {
-    position: absolute;
-    inset: 0;
-    transform-origin: 0% 100%;   /* le pied de l'objet */
-    /* État par défaut = état final. Sans JS, le site est complet.
-       Le transform est ensuite écrit directement en JS par la boucle
-       de scroll, jamais via une variable CSS globale : écrire sur
-       :root invaliderait le style de tout le document à chaque frame. */
-    transform: skewX(-24deg) scaleY(-1.15);
-    filter: blur(1.6px);         /* posé une fois, JAMAIS animé */
-    z-index: -1;
-    pointer-events: none;
-    user-select: none;
-  }
-  @media (max-width: 767px) { .porte > .ombre { filter: blur(1.1px); } }
-
-  /* Coupe l'ombre à une hauteur donnée sous l'objet.
-     Sans cela, l'ombre d'un titre de 9,5 rem traverse le paragraphe suivant :
-     le corps de texte tombe à 3,7:1 sur la zone d'ombre, sous le seuil AA.
-     La règle du brief est explicite — on retire de la forme, jamais du
-     contenu. L'ombre reste longue et visible, elle est simplement bornée. */
-  .ombre-coupee {
-    overflow: clip;
-    padding-bottom: 2.25rem;
-    margin-bottom: -2.25rem;
-  }
-
-
-  /* --- MOUVEMENT ---------------------------------------------
-     Tout ce qui bouge sur ce site est en CSS, piloté par la position de
-     défilement, donc hors du fil principal et sans une ligne de JavaScript.
-     C'est ce qui permet d'avoir des transitions partout sans payer le
-     moindre kilo-octet ni la moindre saccade.
-
-     RÈGLE DE ROBUSTESSE : l'état final EST l'état par défaut. Un navigateur
-     sans `animation-timeline` affiche la page complète, simplement immobile.
-     Rien n'est jamais à `opacity: 0` en dehors du bloc @supports.
-     ------------------------------------------------------------ */
-  @keyframes monte {
-    from { opacity: 0; transform: translateY(22px); }
-    to   { opacity: 1; transform: none; }
-  }
-
-  @keyframes trace {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
-  }
-
-  /* L'ombre s'allonge à mesure que le bloc traverse l'écran : la lumière
-     descend quand on descend. C'est la signature du site, désormais gratuite. */
-  @keyframes course {
-    from { transform: skewX(-30deg) scaleY(-1.55); }
-    to   { transform: skewX(-14deg) scaleY(-0.75); }
-  }
+  /* ══════════════════════════════════════════════════════════
+     MOUVEMENT — tout en CSS piloté par le défilement, donc hors du
+     fil principal et sans une ligne de JavaScript.
+     RÈGLE DE ROBUSTESSE : l'état final EST l'état par défaut. Rien
+     n'est jamais à opacity 0 hors du bloc @supports.
+     ══════════════════════════════════════════════════════════ */
+  @keyframes monte { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+  @keyframes trace { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  /* Le défilement dans le masque : la capture se déplace de plus de
+     300 % de sa hauteur visible. L'ancien différentiel de 8 % était
+     sous le seuil de perception. */
+  @keyframes defile { from { transform: translateY(0); } to { transform: translateY(calc(-100% + var(--fenetre, 62%))); } }
 
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-      .monte {
-        animation: monte linear both;
-        animation-timeline: view();
-        animation-range: entry 5% cover 26%;
-      }
+      .monte { animation: monte linear both; animation-timeline: view(); animation-range: entry 5% cover 28%; }
 
-      /* Décalage en cascade, plafonné à six éléments : au-delà, le dernier
-         arrive trop tard et l'effet se voit au lieu de se sentir. */
-      .cascade > *:nth-child(1) { animation-range: entry 2% cover 22%; }
-      .cascade > *:nth-child(2) { animation-range: entry 6% cover 26%; }
-      .cascade > *:nth-child(3) { animation-range: entry 10% cover 30%; }
-      .cascade > *:nth-child(4) { animation-range: entry 14% cover 34%; }
-      .cascade > *:nth-child(5) { animation-range: entry 18% cover 38%; }
-      .cascade > *:nth-child(n+6) { animation-range: entry 22% cover 42%; }
-      .cascade > * {
-        animation: monte linear both;
-        animation-timeline: view();
-      }
+      .cascade > * { animation: monte linear both; animation-timeline: view(); }
+      .cascade > *:nth-child(1) { animation-range: entry 2% cover 24%; }
+      .cascade > *:nth-child(2) { animation-range: entry 7% cover 29%; }
+      .cascade > *:nth-child(3) { animation-range: entry 12% cover 34%; }
+      .cascade > *:nth-child(4) { animation-range: entry 17% cover 39%; }
+      .cascade > *:nth-child(5) { animation-range: entry 22% cover 44%; }
+      .cascade > *:nth-child(n+6) { animation-range: entry 26% cover 48%; }
 
-      .trace {
-        animation: trace linear both;
-        animation-timeline: view();
-        animation-range: entry 0% cover 20%;
-        transform-origin: left;
-      }
+      .trace { animation: trace linear both; animation-timeline: view();
+               animation-range: entry 0% cover 22%; transform-origin: left; }
 
-      .porte > .ombre {
-        animation: course linear both;
-        animation-timeline: view();
-        animation-range: entry 0% exit 100%;
-      }
+      .defile { animation: defile linear both; animation-timeline: view();
+                animation-range: entry 0% exit 100%; }
     }
   }
 
-  /* Barre de progression de lecture. Pilotée par le défilement du document,
-     en CSS, donc sans écouteur ni recalcul à chaque frame. */
-  .progression {
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    height: 2px;
-    width: 100%;
-    transform-origin: left;
-    transform: scaleX(0);
-    background: var(--accent-large);
+  /* Le survol, enfin visible. Le fond ne bouge pas — l'écart de
+     valeur disponible est de 1,12:1, sous le seuil. C'est le
+     déplacement qui porte l'état, sur le vecteur de l'angle du site
+     (3 / -7 px, rapport 0,445 = tan 24°). */
+  .glisse { transition: transform 240ms var(--ease-entree), box-shadow 240ms var(--ease-entree); }
+  .groupe:hover .glisse, .groupe:focus-visible .glisse { transform: translate(3px, -7px); }
+
+  /* ══════════════════════════════════════════════════════════
+     GRAIN — commuté par le sol. Sur le mur sombre, il fait la
+     différence entre « noir » et « encre ». Jamais sur les captures.
+     ══════════════════════════════════════════════════════════ */
+  /* Le grain du mur est POSÉ DANS la section, pas fixé à l'écran : un calque
+     fixe ne peut pas changer de tuile selon le sol qu'il survole. Sur le mur
+     sombre, il fait la différence entre « noir » et « encre ». */
+  .grain-mur {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/png;base64,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");
+    background-repeat: repeat; background-size: 128px 128px;
+    opacity: 0.5;
+  }
+
+  .grain {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background-image: url("data:image/png;base64,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");
+    background-repeat: repeat; background-size: 128px 128px;
+    opacity: 0.55;
+  }
+
+  .pilule { border-radius: 999px; }
+
+  /* ══════════════════════════════════════════════════════════
+     L'EN-TÊTE
+     Sur l'accueil elle flotte par-dessus le mur, sans fond ni filet.
+     Elle se solidifie au défilement, en CSS : sans cela, un texte
+     clair se retrouverait sur le papier dès la deuxième section.
+     Le repli, si la timeline n'existe pas, est le fond plein — on
+     préfère un en-tête moins élégant à un en-tête illisible.
+     ══════════════════════════════════════════════════════════ */
+  .entete {
+    background-color: var(--color-papier);
+    border-bottom: 1px solid var(--color-filet);
+  }
+  .entete-flottante {
+    background-color: transparent;
+    border-bottom-color: transparent;
+  }
+  @keyframes entete-solide {
+    from { background-color: rgba(242, 239, 233, 0); border-bottom-color: rgba(19, 26, 46, 0); }
+    to   { background-color: rgba(242, 239, 233, 1); border-bottom-color: rgba(19, 26, 46, .22); }
   }
   @supports (animation-timeline: scroll()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .progression {
-        animation: trace linear both;
-        animation-timeline: scroll();
-      }
+    .entete-flottante {
+      animation: entete-solide linear both;
+      animation-timeline: scroll();
+      animation-range: 60px 200px;
     }
   }
 
-  /* --- FORMES -----------------------------------------------
-     Le biseau à 24 degrés a quitté les cartes : il jurait avec le rayon.
-     L'angle survit là où il porte du sens, dans la direction des ombres.
-     Les boutons sont des pilules, les blocs sont arrondis. La sobriété ne
-     vient plus de l'angle vif, elle vient du vide et du contraste. */
-  .pilule { border-radius: 999px; }
-  .carte  { border-radius: var(--radius); }
-
-  /* --- LE GRAIN ----------------------------------------------
-     Une seule couche, fixe, plein écran, à alpha pré-multiplié et
-     SANS mix-blend-mode : un calque fixe blendé impose un readback
-     du backdrop à chaque frame scrollée, sur toute la page. Jamais
-     de feTurbulence. */
-  .grain {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    background-image: url("data:image/png;base64,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");
-    background-repeat: repeat;
-    background-size: 128px 128px;
-  }
-  [data-ground="nuit"] .grain,
-  .grain[data-ground="nuit"] {
-    background-image: url("data:image/png;base64,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");
-  }
-
-  .filet { background-color: var(--color-filet); }
+  /* ══════════════════════════════════════════════════════════
+     LES RÔLES, PAS LES VALEURS
+     Un composant ne doit jamais écrire une couleur : il écrit un
+     rôle, et le sol décide. C'est ce qui permet de poser la même
+     carte sur le mur et sur le papier sans la réécrire, et ce qui
+     empêche un texte gris de finir à 3:1 sur fond sombre.
+     ══════════════════════════════════════════════════════════ */
+  .sur       { color: var(--sur); }
+  .sourd     { color: var(--sourd); }
+  .accent    { color: var(--accent); }
+  .bord      { border-color: var(--trait); }
+  .bord-fort { border-color: var(--trait-fort); }
+  .filet     { background-color: var(--trait); }
 }

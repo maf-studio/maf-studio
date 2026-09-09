@@ -1,4 +1,3 @@
-import Porte from '@/components/Porte'
 
 /**
  * En-tête commun aux pages intérieures. Même respiration que le hero de
@@ -14,15 +13,11 @@ export default function EnTetePage({
   intro: string
 }) {
   return (
-    <section data-ground="jour" className="border-b border-filet overflow-clip">
+    <section data-sol="papier" className="border-b bord overflow-clip">
       <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] pt-32 pb-14 md:pt-40 md:pb-16 text-center">
-        <p className="mono text-gris">{surtitre}</p>
-        <div className="ombre-coupee inline-block mt-5">
-          <Porte>
-            <h1 className="display text-encre">{titre}</h1>
-          </Porte>
-        </div>
-        <p className="mt-12 mx-auto max-w-[62ch] text-gris">{intro}</p>
+        <p className="mono sourd">{surtitre}</p>
+        <h1 className="manifeste sur mt-5">{titre}</h1>
+        <p className="mt-12 mx-auto max-w-[62ch] sourd">{intro}</p>
       </div>
     </section>
   )

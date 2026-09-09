@@ -21,16 +21,16 @@ const ETAPES = [
 
 export default function Methode() {
   return (
-    <section id="methode" data-ground="jour" className="border-b border-filet">
+    <section id="methode" data-sol="papier" className="border-b bord">
       <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-24 md:py-32">
-        <span className="mono text-gris">09 — Méthode</span>
-        <h2 className="h2 text-encre mt-4">Comment ça se passe</h2>
+        <span className="mono sourd">09 — Méthode</span>
+        <h2 className="h2 sur mt-4">Comment ça se passe</h2>
 
-        <ol className="mt-14 border-t border-filet">
+        <ol className="mt-14 border-t bord">
           {ETAPES.map((e) => (
-            <li key={e.jour} className="grid md:grid-cols-12 gap-3 md:gap-8 py-8 border-b border-filet items-baseline">
+            <li key={e.jour} className="grid md:grid-cols-12 gap-3 md:gap-8 py-8 border-b bord items-baseline">
               <span className="mono md:col-span-2 text-base" style={{ color: 'var(--accent)' }}>{e.jour}</span>
-              <p className="md:col-span-10 text-encre text-lg md:text-xl leading-snug">{e.texte}</p>
+              <p className="md:col-span-10 sur text-lg md:text-xl leading-snug">{e.texte}</p>
             </li>
           ))}
         </ol>
@@ -38,9 +38,9 @@ export default function Methode() {
         {/* Définition du délai, écrite à l'identique ici, dans la FAQ et sur
             le devis. Une promesse de délai sans point de départ écrit n'est
             pas une promesse. */}
-        <p className="mt-9 mesure text-gris leading-relaxed">
+        <p className="mt-9 mesure sourd leading-relaxed">
           Les cinq jours ouvrés courent à partir du moment où j'ai reçu l'acompte{' '}
-          <span className="text-encre">et</span> votre dossier complet : logo, photos,
+          <span className="sur">et</span> votre dossier complet : logo, photos,
           accès, textes existants s'il y en a. Le compteur s'arrête chaque fois que
           j'attends un retour de votre part, et repart à réception. Si je dépasse de
           mon fait, la pénalité s'applique.

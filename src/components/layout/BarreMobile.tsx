@@ -13,12 +13,12 @@ import { TEL_LIEN } from '@/site'
  */
 export default function BarreMobile() {
   return (
-    <div className="md:hidden fixed bottom-0 inset-x-0 z-40 grid grid-cols-3 bg-encre text-jour"
+    <div className="md:hidden fixed bottom-0 inset-x-0 z-40 grid grid-cols-3 bg-encre sur"
          style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
-      <a href={`tel:${TEL_LIEN}`} className="mono py-4 text-center border-r border-jour/15">
+      <a href={`tel:${TEL_LIEN}`} className="mono py-4 text-center border-r bord">
         Appeler
       </a>
-      <BookingButton className="mono py-4 text-center border-r border-jour/15">
+      <BookingButton className="mono py-4 text-center border-r bord">
         Rendez-vous
       </BookingButton>
       <a href="/#formulaire" className="mono py-4 text-center">

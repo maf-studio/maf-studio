@@ -10,16 +10,16 @@ import mingo from '@/assets/mingo.jpg'
  */
 export default function StudioBref() {
   return (
-    <section id="studio" data-ground="nuit"
-             className="bg-nuit text-jour border-b border-filet-nuit">
+    <section id="studio" data-sol="mur"
+             className="bg-mur sur border-b bord">
       <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-20 md:py-28">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           <div className="lg:col-span-7">
             <span className="mono" style={{ color: 'var(--accent)' }}>Le studio</span>
             <h2 className="h2 mt-4">Une seule personne, du devis à la mise en ligne</h2>
-            <div className="mt-7 space-y-5 text-jour/70 leading-relaxed mesure">
+            <div className="mt-7 space-y-5 sur/70 leading-relaxed mesure">
               <p>
-                <span className="text-jour">Mohamed-Amine Fadel.</span> Je conçois, je
+                <span className="sur">Mohamed-Amine Fadel.</span> Je conçois, je
                 rédige, je développe et je mets en ligne. C'est la même personne qui
                 répond quand vous appelez. Pas de commercial, pas de chef de projet,
                 aucune structure à financer dans votre devis.
@@ -31,7 +31,7 @@ export default function StudioBref() {
               </p>
             </div>
             <Link to="/realisations"
-                  className="pilule mono mono-md inline-block mt-9 px-7 py-3.5 border transition-colors"
+                  className="pilule mono action inline-block mt-9 px-7 py-3.5 border transition-colors"
                   style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}>
               Voir ce que j'ai livré
             </Link>
@@ -40,7 +40,7 @@ export default function StudioBref() {
           <div className="lg:col-span-4 lg:col-start-9">
             <img src={mingo} alt="Mohamed-Amine Fadel, fondateur de MAF Studio"
                  width={288} height={288} loading="lazy" decoding="async"
-                 className="carte w-[150px] md:w-[200px] aspect-square object-cover ring-1 ring-jour/20" />
+                 className="w-[150px] md:w-[200px] aspect-square object-cover ring-1 ring-white/15" />
           </div>
         </div>
       </div>

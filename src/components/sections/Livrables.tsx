@@ -21,20 +21,20 @@ const LIVRABLES = [
 
 export default function Livrables() {
   return (
-    <section id="livrables" data-ground="penombre" className="bg-penombre border-b border-filet">
+    <section id="livrables" data-sol="papier" className="bg-papier-creux border-b bord">
       <div className="max-w-[1400px] mx-auto px-6 md:px-[6vw] py-24 md:py-32">
-        <span className="mono text-gris">05 — Livrables</span>
-        <h2 className="h2 text-encre mt-4">Ce que vous obtenez</h2>
-        <p className="mt-6 mesure text-gris">
+        <span className="mono sourd">05 — Livrables</span>
+        <h2 className="h2 sur mt-4">Ce que vous obtenez</h2>
+        <p className="mt-6 mesure sourd">
           Un prix sans périmètre ne veut rien dire. Voici la liste, ligne par ligne, de
           ce qui est fabriqué, rédigé, paramétré et remis.
         </p>
 
-        <ol className="mt-12 border-t border-filet">
+        <ol className="mt-12 border-t bord">
           {LIVRABLES.map((l, i) => (
-            <li key={l} className="flex items-baseline gap-5 md:gap-8 py-4 border-b border-filet">
-              <span className="mono text-gris shrink-0 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-              <span className="text-encre">{l}</span>
+            <li key={l} className="flex items-baseline gap-5 md:gap-8 py-4 border-b bord">
+              <span className="mono sourd shrink-0 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+              <span className="sur">{l}</span>
             </li>
           ))}
         </ol>
