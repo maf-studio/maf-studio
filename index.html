@@ -6,16 +6,23 @@
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <title>MAF Studio — Growth ops et automatisation pour TPE et PME</title>
-    <meta name="description" content="Freelance growth ops : CRM, publicité Meta et TikTok, automatisation, sites web. À distance partout en France. Site vitrine dès 500 € HT." />
+    <title>MAF Studio — Agence web et digitale, site en ligne en 5 jours ouvrés</title>
+    <meta name="description" content="Agence web et digitale. Site vitrine à 1 490 € HT livré en 5 jours ouvrés, boutique en ligne, publicité Google et Meta. Site, domaine et code à votre nom. À distance, partout en France." />
     <meta name="author" content="Mohamed-Amine Fadel" />
-    <meta name="theme-color" content="#08070C" />
-    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#F2F0EA" />
 
+    <!--
+      Les balises de partage restent ICI, en statique, et nulle part ailleurs.
+      LinkedIn, WhatsApp et Slack n'exécutent pas de JavaScript : ce sont les
+      seules qu'ils lisent. react-helmet-async ne gère que ce qui varie d'une
+      route à l'autre (titre, canonique, robots), sinon les deux se dupliquent
+      dans le <head> — et sur les pages légales, deux directives robots
+      contradictoires cohabitaient.
+    -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.maf-studio.fr/" />
-    <meta property="og:title" content="MAF Studio — Growth ops et automatisation pour TPE et PME" />
-    <meta property="og:description" content="Freelance growth ops : CRM, publicité Meta et TikTok, automatisation, sites web. À distance partout en France. Site vitrine dès 500 € HT." />
+    <meta property="og:title" content="MAF Studio — Agence web et digitale, site en ligne en 5 jours ouvrés" />
+    <meta property="og:description" content="Site vitrine à 1 490 € HT livré en 5 jours ouvrés. Site, domaine et code à votre nom, sans abonnement obligatoire." />
     <meta property="og:image" content="https://www.maf-studio.fr/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -23,38 +30,22 @@
     <meta property="og:locale" content="fr_FR" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="MAF Studio — Growth ops et automatisation pour TPE et PME" />
-    <meta name="twitter:description" content="Freelance growth ops : CRM, publicité, automatisation, sites web. À distance partout en France. Site vitrine dès 500 € HT." />
+    <meta name="twitter:title" content="MAF Studio — Agence web et digitale, site en ligne en 5 jours ouvrés" />
+    <meta name="twitter:description" content="Site vitrine à 1 490 € HT livré en 5 jours ouvrés. Site, domaine et code à votre nom." />
     <meta name="twitter:image" content="https://www.maf-studio.fr/og-image.jpg" />
 
     <link rel="canonical" href="https://www.maf-studio.fr/" />
 
-    <!-- Police Archivo : auto-hébergée via @fontsource-variable/archivo.
-         Pas d'appel à fonts.googleapis.com — un transfert d'adresse IP
-         vers Google en moins, et une requête tierce en moins au chargement. -->
+    <!--
+      Polices auto-hébergées via @fontsource-variable, importées dans
+      index.css : aucun appel à fonts.googleapis.com, donc aucune adresse IP
+      de visiteur transmise à Google et une requête tierce en moins.
 
-    <!-- Cal.com — remplace Calendly (gratuit, même fonctionnalité) -->
-    <script type="text/javascript">
-      (function (C, A, L) {
-        let p = function (a, ar) { a.q.push(ar); };
-        let d = C.document;
-        C.Cal = C.Cal || function () {
-          let cal = C.Cal; let ar = arguments;
-          if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
-          if (ar[0] === L) {
-            const api = function () { p(api, arguments); };
-            const namespace = ar[1];
-            api.q = api.q || [];
-            if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
-            else p(cal, ar);
-            return;
-          }
-          p(cal, ar);
-        };
-      })(window, "https://app.cal.com/embed/embed.js", "init");
-      Cal("init", { origin: "https://app.cal.com" });
-      Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7C3AED" } } });
-    </script>
+      Cal.com n'est plus chargé ici. Son script est injecté au premier clic
+      sur un bouton de réservation (voir BookingButton.tsx) : le chemin
+      critique s'allège et l'IP du visiteur n'est plus envoyée à un tiers
+      sans la moindre interaction de sa part.
+    -->
   </head>
   <body>
     <div id="root"></div>

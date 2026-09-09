@@ -1,10 +1,10 @@
 ---
 name: Ton et registre validé — MAF Studio
-description: Le client veut un ton professionnel mais humain, sans familiarité excessive ni argot — applicable à toutes les sections
+description: Ton professionnel et posé, vouvoiement, sans familiarité ni argot — applicable à toutes les sections
 type: feedback
 ---
 
-Le registre doit être professionnel et posé, pas décontracté ou "punchline". On peut conserver le "tu" comme parti pris du site, mais il doit sonner comme un expert qui s'adresse à un décideur — pas comme un ami qui parle à un pote.
+Le registre doit être professionnel et posé, pas décontracté ou "punchline". Le site vouvoie sans exception. Le ton doit sonner comme un expert qui s'adresse à un décideur, pas comme un ami qui parle à un proche.
 
 **Why:** Le client trouve l'actuel ton trop familier pour des décideurs PME. Les tournures comme "On travaille ensemble ?", "Pas de bullshit", "C'est pas de la magie" ou "Tu fais tout, tu délègues rien" nuisent à la crédibilité.
 

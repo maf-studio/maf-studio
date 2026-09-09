@@ -1,106 +1,127 @@
-import { motion, useReducedMotion } from 'framer-motion'
-import BookingButton from '@/components/BookingButton'
+import CadreNavigateur from '@/components/CadreNavigateur'
+import { REALISATIONS } from '@/data/realisations'
+import { FORFAITS, SUR_MESURE, euros } from '@/content/offres'
 
 /**
- * Hero — composition asymétrique alignée sur un rail à gauche.
- * Une seule séquence animée sur toute la page : les fils se tendent,
- * puis le titre se pose. Rien d'autre ne bouge au scroll.
+ * HERO — sur le mur.
+ *
+ * Le premier écran ne dit plus « voici ce que je vends », il MONTRE ce qui a
+ * été livré. Quatre images visibles ou amorcées au lieu d'aucune, une seule
+ * action au lieu de deux, et le seul bloc de texte centré du site a disparu.
+ *
+ * Le fond sombre n'est pas une préférence : sur l'ancien fond clair, trois des
+ * quatre captures ressortaient à 1,05:1, exactement la valeur de la page. Sur
+ * le mur, les mêmes fichiers passent à 15:1 sans qu'un pixel change.
+ *
+ * Le panneau de droite DÉBORDE du cadre, volontairement. Une image qui
+ * s'arrête proprement dans sa colonne est un gabarit ; une image que le cadre
+ * coupe est une mise en page.
+ *
+ * Le H1 reste en trois <span> écrits en dur : le texte est peint à la première
+ * frame, il n'y a aucun décalage de mise en page, et un échec de script laisse
+ * un hero complet. C'est la meilleure règle du dépôt et elle ne bouge pas.
  */
+
+const vedette = REALISATIONS[0]
+const [essentiel, vitrine] = FORFAITS
+const propre = (u: string) => u.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '')
+
 export default function Hero() {
-  const reduce = useReducedMotion()
-  const draw = (delay: number) =>
-    reduce
-      ? { pathLength: 1, opacity: 1 }
-      : { pathLength: 1, opacity: 1, transition: { pathLength: { duration: 1.1, delay, ease: [0.16, 1, 0.3, 1] as const }, opacity: { duration: 0.2, delay } } }
-
-  const line = (delay: number) => ({
-    initial: reduce ? { opacity: 1 } : { opacity: 0, y: '110%' },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] as const },
-  })
-
   return (
-    <section className="relative min-h-[100svh] flex items-center border-b border-rule overflow-hidden">
-      {/* Les fils. Tendus depuis le coin supérieur droit, ils traversent
-          le titre — c'est le motif de marque, pas un fond décoratif. */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 1440 900"
-        preserveAspectRatio="xMidYMid slice"
-        aria-hidden="true"
-      >
-        {[
-          { d: 'M1520 -60 L120 900', c: 'var(--color-violet)', w: 1, o: 0.55, t: 0.15 },
-          { d: 'M1620 -60 L220 900', c: 'var(--color-violet)', w: 1, o: 0.28, t: 0.25 },
-          { d: 'M1720 -60 L320 900', c: 'var(--color-magenta)', w: 1, o: 0.4, t: 0.35 },
-          { d: 'M1840 -60 L440 900', c: 'var(--color-violet)', w: 1, o: 0.16, t: 0.45 },
-        ].map((s, i) => (
-          <motion.path
-            key={i}
-            d={s.d}
-            stroke={s.c}
-            strokeWidth={s.w}
-            strokeOpacity={s.o}
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={draw(s.t)}
-          />
-        ))}
-      </svg>
+    <section id="haut" data-sol="mur"
+             className="relative bg-mur min-h-[100svh] flex flex-col justify-center overflow-clip pt-24 pb-0">
+      <span className="grain-mur" aria-hidden="true" />
 
-      <div className="relative z-10 w-full max-w-[1180px] mx-auto px-6 md:px-10 pt-32 pb-20">
-        <div>
-          <h1 className="display text-bone">
-            {['La croissance,', 'ça se pilote.'].map((t, i) => (
-              <span key={t} className="block overflow-hidden">
-                <motion.span
-                  className="block"
-                  style={{ fontSize: 'clamp(2.7rem, 9.4vw, 8.5rem)' }}
-                  {...line(0.45 + i * 0.12)}
-                >
-                  {t}
-                </motion.span>
-              </span>
-            ))}
-          </h1>
+      <div className="relative z-10 w-full pl-6 md:pl-[5vw] pr-6 md:pr-0">
+        <div className="grid lg:grid-cols-12 gap-y-12 lg:gap-x-6 items-center">
+
+          {/* ── Colonnes 1 à 7 ─────────────────────────────── */}
+          <div className="lg:col-span-7">
+            <p className="mono flex items-center gap-3" style={{ color: 'var(--color-gris-nuit)' }}>
+              <span aria-hidden="true" className="h-px w-7 shrink-0"
+                    style={{ background: 'var(--color-outremer-nuit)' }} />
+              Agence web et digitale — sites vitrines, boutiques en ligne, publicité
+            </p>
+
+            <h1 className="display sur mt-7"
+                aria-label="Je dessine, j'écris, je développe, je publie. Vous gardez les clés.">
+              <span aria-hidden="true" className="block">Je dessine, j'écris,</span>
+              <span aria-hidden="true" className="block">je développe, je publie.</span>
+              <span aria-hidden="true" className="block">Vous gardez les clés.</span>
+            </h1>
+
+            <p className="mt-9 mesure sur">
+              Une seule personne dessine, écrit, développe et met en ligne, et c'est la
+              même qui décroche quand vous appelez. Le nom de domaine, l'hébergement et le
+              code source sont ouverts à votre nom dès le premier jour, avec vos
+              coordonnées. Je n'ai aucun moyen technique de couper votre site.
+              C'est volontaire.
+            </p>
+
+            {/* Une seule action. Deux boutons de poids égal, c'est une hésitation. */}
+            <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
+              <a href="#contact"
+                 className="action inline-flex items-center px-7 py-4 bg-papier"
+                 style={{ color: 'var(--color-mur)' }}>
+                Réserver 20 minutes
+              </a>
+              <a href="#tarifs"
+                 className="action sur border-b pb-1 transition-colors"
+                 style={{ borderColor: 'rgba(242,239,233,0.4)' }}>
+                Voir les cinq prix →
+              </a>
+            </div>
+
+            <p className="mono mt-10" style={{ color: 'var(--color-gris-nuit)' }}>
+              Un prix ferme
+              <span style={{ color: 'var(--color-outremer-nuit)' }}> · </span>Une date écrite sur le devis
+              <span style={{ color: 'var(--color-outremer-nuit)' }}> · </span>Un seul interlocuteur
+              <span style={{ color: 'var(--color-outremer-nuit)' }}> · </span>Zéro abonnement
+            </p>
+
+            <p className="mt-4 text-[0.9375rem]" style={{ color: 'var(--color-gris-nuit)' }}>
+              Cinq forfaits fermes, de {euros(essentiel.prix)} à {euros(SUR_MESURE.prix)} € HT.
+              Celui que je conseille : {vitrine.nom}, {euros(vitrine.prix)} €.
+            </p>
+          </div>
+
+          {/* ── L'objet, colonnes 8 à 12, débordant à droite ── */}
+          <div className="lg:col-span-5 lg:-mr-[5vw]">
+            <div data-projet={vedette.cle}
+                 className="lavis relative p-5 md:p-6 bg-creux planche-teintee"
+                 style={{ borderTop: '1px solid var(--color-lisere)' }}>
+              <a href={vedette.url} target="_blank" rel="noopener noreferrer"
+                 className="groupe block" aria-label={`Ouvrir ${vedette.nom}, ${propre(vedette.url)}`}>
+                <CadreNavigateur domaine={propre(vedette.url)} cle={vedette.cle} className="glisse planche">
+                  <img src={vedette.image} alt={`Page d'accueil du site ${vedette.nom}`}
+                       width={1600} height={1000} fetchPriority="high" decoding="async"
+                       className="w-full aspect-[16/10] object-cover object-top" />
+                </CadreNavigateur>
+              </a>
+            </div>
+          </div>
         </div>
 
-        <motion.div
-          initial={reduce ? { opacity: 1 } : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.85 }}
-          className="mt-10 grid md:grid-cols-[minmax(0,32rem)_auto] gap-10 md:gap-16 md:items-end"
-        >
-          <p className="text-lg md:text-xl text-dim leading-relaxed">
-            Je construis et j'opère les systèmes d'acquisition des TPE et PME
-            françaises. CRM, publicité, automatisation, site web — montés pour
-            tourner sans vous une fois en place.
+        {/* ── La pellicule, volontairement coupée par le pli ── */}
+        <div className="mt-14 lg:mt-20 border-t bord pt-6 pr-0">
+          <p className="mono" style={{ color: 'var(--color-gris-nuit)' }}>
+            Quatre sites en production — ouvrez-les
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-3">
-            <BookingButton className="cut-sm bg-magenta px-7 py-4 text-[0.95rem] font-bold text-white hover:bg-violet transition-colors duration-200">
-              Réserver 20 minutes
-            </BookingButton>
-            <a
-              href="#services"
-              className="cut-sm border border-rule px-7 py-4 text-[0.95rem] font-semibold text-bone hover:border-violet transition-colors duration-200 text-center"
-            >
-              Voir les tarifs
-            </a>
-          </div>
-        </motion.div>
-
-        {/* Ligne de crédibilité — uniquement des faits vérifiables.
-            Aucun chiffre de résultat tant qu'il n'y a pas de cas réel. */}
-        <motion.p
-          initial={reduce ? { opacity: 1 } : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 1.05 }}
-          className="mt-16 pt-6 border-t border-rule text-sm text-dim"
-        >
-          4 ans en growth operations chez Skooleo · Zoho, Make, n8n, Meta, TikTok ·
-          Travail à distance, partout en France
-        </motion.p>
+          <ul className="mt-5 flex gap-5 overflow-x-auto pb-2 snap-x lg:overflow-visible
+                         [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {REALISATIONS.map((p) => (
+              <li key={p.nom} className="shrink-0 w-[232px] snap-start">
+                <a href={p.url} target="_blank" rel="noopener noreferrer" className="groupe block">
+                  <CadreNavigateur domaine={propre(p.url)} cle={p.cle} compact className="glisse planche">
+                    <img src={p.image} alt={`Page d'accueil du site ${p.nom}`}
+                         width={1600} height={1000} loading="lazy" decoding="async"
+                         className="w-full aspect-[16/10] object-cover object-top" />
+                  </CadreNavigateur>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   )

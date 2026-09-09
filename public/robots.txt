@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://maf-studio.fr/sitemap.xml
+Sitemap: https://www.maf-studio.fr/sitemap.xml

@@ -1,42 +1,53 @@
 ---
-name: Contraintes Hero — formules à éviter et angles validés
-description: Règles spécifiques à la section Hero issues d'un brief explicite du client
+name: Contraintes Hero — non-invention, formules à éviter, angles validés
+description: Règles de rédaction du Hero, dont la règle de non-invention qui prime sur tout le reste
 type: feedback
 ---
 
-Ne jamais utiliser de formules condescendantes ou négatives dans le Hero. Sont explicitement interdits :
-- "Votre business mérite mieux que la médiocrité" (formule originale, rejetée)
-- Toute tournure qui sous-entend que le prospect fait mal son travail
-- Les constructions "vous perdez X" (culpabilisation implicite)
+## Règle de non-invention — elle prime sur toute autre consigne
 
-**Why:** Le client cible des dirigeants PME déjà surchargés. Pointer leurs lacunes les braque ; leur montrer ce qu'ils peuvent gagner les engage.
+Aucun chiffre de résultat, aucun compteur de clients, aucun témoignage, aucune note et
+aucune récompense ne doivent apparaître dans une copie MAF Studio. Il n'en existe aucun
+de vérifié.
 
-**How to apply:** Dans le Hero, partir toujours d'un bénéfice concret ou d'un résultat mesurable. Le négatif peut apparaître dans la section Problem — jamais dans le Hero.
+**Why:** une version antérieure de cette mémoire fixait « 30+ clients PME/TPE », « 3× ROI
+moyen généré » et « 3× plus de leads » comme des valeurs immuables. Aucun de ces chiffres
+n'a jamais existé. Le fichier de suivi du chiffre d'affaires est vide. Publier cela exposait
+le client à une allégation commerciale trompeuse, et aucun outil d'analyse ne l'aurait
+signalé.
 
----
+**How to apply:** les seuls chiffres autorisés sont ceux que MAF Studio contrôle et peut
+écrire au contrat — un prix ferme, un délai en jours ouvrés, un nombre de pages, un nombre
+de tours de corrections, les quatre ans d'expérience chez Skooleo. Quand un mécanisme
+commercial réclame une preuve qui n'existe pas, on lui substitue un engagement contractuel
+ou une réalisation vérifiable en ouvrant son lien. Jamais un chiffre approximé.
 
-## Angles validés pour le Hero (à réutiliser ou combiner)
+## Vouvoiement
 
-- **Levier de liberté** : "Plus de clients, plus de marges, sans embaucher" — parle à la contrainte RH du dirigeant PME
-- **Preuve avant promesse** : ancrage chiffré dès le headline (ex. "3× plus de leads") — crédibilise avant même d'expliquer
-- **Partenaire opérationnel** : "Moteur de croissance prêt en 48h" — répond à l'anxiété de gestion du prestataire
+Tout le site vouvoie. **Why:** une consigne antérieure demandait le tutoiement, en
+contradiction avec l'intégralité des textes publiés. **How to apply:** vous, votre, vos —
+sans exception, y compris dans les CTA et les réponses de FAQ.
 
-## CTAs validés ou proposés pour le Hero
+## Formules interdites
 
-- "Discutons de votre projet →" — validé, conservé, ton expert
-- "Réserver un appel stratégique →" — variante plus formelle/conseil
-- "Lancer mon projet →" — variante plus volontaire/entrepreneur
-- "Voir comment ça marche ↓" — CTA secondaire alternatif à "Découvrir nos services"
-- "Voir nos réalisations ↓" — CTA secondaire orienté preuve sociale
+Aucune tournure condescendante ou culpabilisante : « votre business mérite mieux », toute
+construction qui sous-entend que le prospect travaille mal, tout « vous perdez X ».
 
-## Chiffres trust bar à conserver impérativement
+**Why:** la cible est un dirigeant de TPE déjà surchargé. Pointer ses lacunes le braque.
 
-30+ clients PME/TPE | 3× ROI moyen généré | 48h pour démarrer
+**How to apply:** partir d'un fait vérifiable ou d'un bénéfice concret. Le registre est
+celui d'un partenaire expert qui s'adresse à un décideur.
 
-Les libellés peuvent varier légèrement (ex. "de la signature au démarrage", "retour sur investissement moyen", "pour être opérationnel") mais les valeurs numériques 30+, 3× et 48h sont immuables.
+## Angles validés
 
-## Headlines Hero testés en session (avril 2026)
+- **Le délai** : un nombre de jours ouvrés, avec sa définition exacte du point de départ.
+- **Le prix ferme** : un montant, jamais un « à partir de ».
+- **La propriété** : le site, le code et le domaine au nom du client dès le premier jour.
 
-- "PLUS DE CLIENTS. / PLUS DE MARGES. / SANS RECRUTER." — angle levier de croissance, promesse triple bénéfice
-- "VOTRE CROISSANCE, / OPÉRATIONNELLE / EN 48 HEURES." — angle rapidité opérationnelle, différenciation par la vitesse
-- "LA CROISSANCE / QUE VOUS VISEZ, / ON LA CONSTRUIT." — angle partenaire co-constructeur, appel à l'ambition positive
+Ce sont les trois seules choses que MAF Studio contrôle entièrement. Elles remplacent la
+preuve sociale absente.
+
+## CTA
+
+Pas d'emoji, pas de point d'exclamation. « Réserver 20 minutes » pour le CTA chaud,
+« Recevoir un devis » pour le froid.

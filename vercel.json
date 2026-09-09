@@ -4,7 +4,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/((?!assets/|favicon.svg|icons.svg|robots.txt|sitemap.xml|og-image.jpg).*)", "destination": "/index.html" }
+    { "source": "/((?!assets/|favicon.svg|robots.txt|sitemap.xml|og-image.jpg).*)", "destination": "/index.html" }
   ],
   "headers": [
     {

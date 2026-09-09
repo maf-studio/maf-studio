@@ -1,2 +1,2 @@
-- [Ton et registre validé](feedback_tone_register.md) — Professionnel et posé, pas familier/argot ; conserver le "tu" mais en registre expert-décideur
-- [Contraintes Hero — angles et CTAs](feedback_hero_constraints.md) — Pas de formules négatives/condescendantes ; 3 angles validés ; trust bar 30+/3×/48h immuable
+- [Contraintes Hero — non-invention et angles](feedback_hero_constraints.md) — la règle de non-invention prime sur tout ; vouvoiement ; les trois seuls angles vérifiables
+- [Ton et registre validé](feedback_tone_register.md) — professionnel et posé, registre expert-décideur, vouvoiement

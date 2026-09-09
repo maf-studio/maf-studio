@@ -1,74 +1,104 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import BookingButton from '@/components/BookingButton'
 
+/**
+ * En-tête 72 px, sur le mur, sur toutes les pages.
+ *
+ * Elle ne change pas de sol au défilement : une barre qui s'éclaircit en
+ * cours de route demande soit du JavaScript, soit une astuce de timeline qui
+ * laisse un état illisible là où elle n'est pas supportée. Une barre sombre
+ * permanente est lisible partout, et elle prolonge le mur du premier écran.
+ *
+ * Le sommaire de douze traits a disparu avec la page unique : il n'avait de
+ * sens que sur une page qui contenait tout. Il reste sa meilleure idée, la
+ * position rendue lisible, sous forme d'une barre de progression fine —
+ * pilotée par une timeline de scroll CSS, donc sans une ligne de JavaScript
+ * et sans écouteur d'événement.
+ */
+
 const LIENS = [
-  { label: 'Services', href: '#services' },
-  { label: 'Réalisations', href: '#realisations' },
-  { label: 'Méthode', href: '#methode' },
-  { label: 'À propos', href: '#a-propos' },
-  { label: 'Questions', href: '#faq' },
-  { label: 'Contact', href: '#contact' },
+  { to: '/realisations', label: 'Réalisations' },
+  { to: '/tarifs', label: 'Tarifs' },
+  { to: '/blog', label: 'Journal' },
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
   const [ouvert, setOuvert] = useState(false)
+  const boutonRef = useRef<HTMLButtonElement>(null)
 
+  // Échap ferme, et le focus revient sur le bouton qui a ouvert le menu.
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 30)
-    window.addEventListener('scroll', fn, { passive: true })
-    return () => window.removeEventListener('scroll', fn)
-  }, [])
+    if (!ouvert) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOuvert(false)
+        boutonRef.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [ouvert])
+
+  const lien = ({ isActive }: { isActive: boolean }) =>
+    `nav-lien py-3 transition-colors ${isActive ? 'sur' : 'sourd hover:sur'}`
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-        scrolled ? 'bg-ink/95 backdrop-blur border-b border-rule' : 'border-b border-transparent'
-      }`}
-    >
-      <nav className="max-w-[1180px] mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
-        <a href="#" className="display text-bone text-xl tracking-tight py-3">
-          MAF <span className="text-magenta">Studio</span>
-        </a>
+    <header data-sol="mur" className="fixed top-0 inset-x-0 z-50 h-[72px] bg-mur border-b bord">
+      <nav className="h-full max-w-[1400px] mx-auto px-6 md:px-[6vw] flex items-center justify-between gap-6"
+           aria-label="Navigation principale">
+        <Link to="/" viewTransition
+              className="logotype sur shrink-0">
+          MAF STUDIO
+        </Link>
 
-        <div className="hidden md:flex items-center gap-9">
+        <div className="hidden md:flex items-center gap-8 ml-auto">
           {LIENS.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm text-dim hover:text-bone transition-colors">
+            <NavLink key={l.to} to={l.to} viewTransition className={lien}>
               {l.label}
-            </a>
+            </NavLink>
           ))}
-          <BookingButton className="cut-sm bg-magenta px-5 py-2.5 text-sm font-bold text-white hover:bg-violet transition-colors">
-            Réserver 20 min
-          </BookingButton>
         </div>
 
+        <BookingButton className="action hidden sm:inline-flex px-5 py-3 shrink-0 whitespace-nowrap bg-papier"
+          style={{ color: 'var(--color-mur)' }}>
+          Réserver 20 minutes
+        </BookingButton>
+
         <button
+          ref={boutonRef}
           type="button"
           onClick={() => setOuvert(!ouvert)}
           aria-label={ouvert ? 'Fermer le menu' : 'Ouvrir le menu'}
           aria-expanded={ouvert}
-          className="md:hidden w-11 h-11 flex flex-col items-center justify-center gap-1.5"
+          aria-controls="menu-mobile"
+          className="md:hidden w-11 h-11 -mr-2 flex flex-col items-center justify-center gap-[5px] sur"
         >
-          <span className={`w-6 h-px bg-bone transition-transform ${ouvert ? 'translate-y-[3.5px] rotate-45' : ''}`} />
-          <span className={`w-6 h-px bg-bone transition-transform ${ouvert ? '-translate-y-[3.5px] -rotate-45' : ''}`} />
+          <span className={`w-6 h-px transition-transform ${ouvert ? 'translate-y-[3px] rotate-[24deg]' : ''}`} style={{ background: 'currentColor' }} />
+          <span className={`w-6 h-px transition-transform ${ouvert ? '-translate-y-[3px] -rotate-[24deg]' : ''}`} style={{ background: 'currentColor' }} />
         </button>
       </nav>
 
-      {ouvert && (
-        <div className="md:hidden bg-ink border-b border-rule px-6 pb-8 pt-2">
-          {LIENS.map((l) => (
-            <a
-              key={l.href} href={l.href} onClick={() => setOuvert(false)}
-              className="block py-3.5 text-bone border-b border-rule"
-            >
-              {l.label}
-            </a>
-          ))}
-          <BookingButton className="cut-sm mt-6 w-full bg-magenta px-5 py-3.5 text-sm font-bold text-white">
-            Réserver 20 min
-          </BookingButton>
-        </div>
-      )}
+      {/* La position dans la page, en une barre. Timeline de scroll CSS :
+          zéro écouteur, zéro recalcul, et elle disparaît proprement là où la
+          propriété n'existe pas. */}
+      <div aria-hidden="true" className="progression" />
+
+      <div id="menu-mobile" hidden={!ouvert}
+           className="md:hidden bg-papier border-b bord px-6 pb-8 pt-2" data-sol="papier">
+        <Link to="/" viewTransition onClick={() => setOuvert(false)}
+              className="block py-3.5 border-b bord sur nav-lien">Accueil</Link>
+        {LIENS.map((l) => (
+          <NavLink key={l.to} to={l.to} viewTransition onClick={() => setOuvert(false)}
+                   className="block py-3.5 border-b bord sur nav-lien">
+            {l.label}
+          </NavLink>
+        ))}
+      </div>
     </header>
   )
 }

@@ -1,61 +1,33 @@
 import { Helmet } from 'react-helmet-async'
 import { SITE_URL } from '@/site'
 
-
-const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`
-
-interface SEOProps {
-  title?: string
-  description?: string
-  canonical?: string
-  ogImage?: string
-  ogType?: 'website' | 'article'
-  noIndex?: boolean
-}
-
+/**
+ * SEO réduit aux SEULES balises qui varient d'une route à l'autre.
+ *
+ * Auparavant, index.html et ce composant écrivaient tous les deux la
+ * description, les og:*, les twitter:* et la canonique : elles se
+ * dupliquaient dans le <head>. Pire, sur les pages légales, le
+ * « index, follow » statique cohabitait avec le « noindex, follow » injecté
+ * ici — deux directives contradictoires au même endroit.
+ *
+ * Décision : les balises de partage restent statiques dans index.html, parce
+ * que ce sont les seules que lisent LinkedIn, WhatsApp et Slack, qui
+ * n'exécutent pas de JavaScript. Ici, uniquement ce qui change par route.
+ */
 export default function SEO({
-  title = 'MAF Studio — Growth ops et automatisation pour TPE et PME',
-  description = "Freelance growth ops : CRM, publicité Meta et TikTok, automatisation, sites web. À distance partout en France. Site vitrine dès 500 € HT.",
+  title = 'MAF Studio — Agence web et digitale, site en ligne en 5 jours ouvrés',
   canonical = SITE_URL,
-  ogImage = DEFAULT_OG_IMAGE,
-  ogType = 'website',
   noIndex = false,
-}: SEOProps) {
-  const fullTitle = title.includes('MAF') ? title : `${title} | MAF STUDIO`
-
+}: {
+  title?: string
+  canonical?: string
+  noIndex?: boolean
+}) {
   return (
     <Helmet>
-      {/* ── Core ── */}
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
+      <title>{title}</title>
       <link rel="canonical" href={canonical} />
-      {noIndex && <meta name="robots" content="noindex, nofollow" />}
-
-      {/* ── Open Graph ── */}
-      <meta property="og:type" content={ogType} />
-      <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonical} />
-      <meta property="og:image" content={ogImage} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="MAF Studio — Growth ops et digital pour TPE et PME" />
-      <meta property="og:site_name" content="MAF STUDIO" />
-      <meta property="og:locale" content="fr_FR" />
-
-      {/* ── Twitter / X Card ── */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
-
-      {/* ── LinkedIn specific ── */}
-      <meta property="og:image:secure_url" content={ogImage} />
-
-      {/* ── Extra crawl hints ── */}
-      <meta name="author" content="Mohamed-Amine Fadel" />
-      <meta name="keywords" content="growth ops, freelance growth, social ads, automatisation IA, make, n8n, webflow, wordpress, PME, TPE, freelance à distance, CRM, digital marketing" />
-      <meta name="theme-color" content="#08070C" />
+      <meta name="robots" content={noIndex ? 'noindex, follow' : 'index, follow'} />
     </Helmet>
   )
 }

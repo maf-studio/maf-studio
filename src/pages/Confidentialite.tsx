@@ -4,9 +4,9 @@ import { EMAIL } from '@/site'
 
 export default function Confidentialite() {
   const bloc = 'mb-10'
-  const titre = 'display-flat text-bone text-xl mb-3'
-  const corps = 'text-dim leading-relaxed max-w-[68ch]'
-  const lien = 'text-magenta hover:underline'
+  const titre = 'h2 sur text-xl mb-3'
+  const corps = 'sourd leading-relaxed max-w-[68ch]'
+  const lien = 'accent hover:underline'
 
   return (
     <>
@@ -16,12 +16,12 @@ export default function Confidentialite() {
       </Helmet>
 
       <main className="max-w-[1180px] mx-auto px-6 md:px-10 pt-36 pb-24">
-        <h1 className="display text-bone text-5xl md:text-7xl mb-6">
+        <h1 className="display sur text-5xl md:text-7xl mb-6">
           Politique de
           <br />
           confidentialité
         </h1>
-        <p className="text-sm text-dim mb-14">
+        <p className="text-sm sourd mb-14">
           Dernière mise à jour : septembre 2026
         </p>
 
@@ -48,7 +48,7 @@ export default function Confidentialite() {
             formulaire. Vous pouvez le retirer à tout moment en me le demandant.
           </p>
           <p className={`${corps} mt-4`}>
-            Ce site n'utilise <strong className="text-bone">aucun outil de
+            Ce site n'utilise <strong className="sur">aucun outil de
             mesure d'audience</strong>, aucun pixel publicitaire, aucun cookie
             de suivi. Je ne sais pas combien de personnes visitent ce site, ni
             d'où elles viennent.
@@ -76,7 +76,7 @@ export default function Confidentialite() {
             <li className="flex gap-3">
               <span className="mt-2.5 h-px w-4 shrink-0 bg-magenta" />
               <span>
-                <strong className="text-bone">Vercel Inc.</strong> (États-Unis)
+                <strong className="sur">Vercel Inc.</strong> (États-Unis)
                 héberge le site. Ses serveurs enregistrent techniquement les
                 requêtes reçues, dont les adresses IP.
               </span>
@@ -84,14 +84,14 @@ export default function Confidentialite() {
             <li className="flex gap-3">
               <span className="mt-2.5 h-px w-4 shrink-0 bg-magenta" />
               <span>
-                <strong className="text-bone">EmailJS</strong> achemine les
+                <strong className="sur">EmailJS</strong> achemine les
                 messages du formulaire de contact jusqu'à ma boîte mail.
               </span>
             </li>
             <li className="flex gap-3">
               <span className="mt-2.5 h-px w-4 shrink-0 bg-magenta" />
               <span>
-                <strong className="text-bone">Cal.com</strong> gère la prise de
+                <strong className="sur">Cal.com</strong> gère la prise de
                 rendez-vous. Son script est chargé à l'ouverture de la page, ce
                 qui transmet votre adresse IP à Cal.com même si vous ne réservez
                 rien.

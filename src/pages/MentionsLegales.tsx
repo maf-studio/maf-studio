@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 export default function MentionsLegales() {
   const bloc = 'mb-10'
-  const titre = 'display-flat text-bone text-xl mb-3'
-  const corps = 'text-dim leading-relaxed max-w-[68ch]'
+  const titre = 'h2 sur text-xl mb-3'
+  const corps = 'sourd leading-relaxed max-w-[68ch]'
 
   return (
     <>
@@ -14,7 +14,7 @@ export default function MentionsLegales() {
       </Helmet>
 
       <main className="max-w-[1180px] mx-auto px-6 md:px-10 pt-36 pb-24">
-        <h1 className="display text-bone text-5xl md:text-7xl mb-14">Mentions légales</h1>
+        <h1 className="display sur text-5xl md:text-7xl mb-14">Mentions légales</h1>
 
         <section className={bloc}>
           <h2 className={titre}>Éditeur du site</h2>
@@ -25,7 +25,7 @@ export default function MentionsLegales() {
             <br />TVA non applicable, article 293 B du Code général des impôts
             (franchise en base).
             <br />
-            <a href="mailto:aminefadelpro@gmail.com" className="text-magenta hover:underline">
+            <a href="mailto:aminefadelpro@gmail.com" className="accent hover:underline">
               aminefadelpro@gmail.com
             </a>{' '}
             — 06 66 84 03 44
@@ -59,7 +59,7 @@ export default function MentionsLegales() {
           <h2 className={titre}>Données personnelles</h2>
           <p className={corps}>
             Le traitement de vos données est décrit en détail dans la{' '}
-            <Link to="/confidentialite" className="text-magenta hover:underline">
+            <Link to="/confidentialite" className="accent hover:underline">
               politique de confidentialité
             </Link>
             . En résumé : seules les informations que vous saisissez dans le
@@ -81,8 +81,8 @@ export default function MentionsLegales() {
         </section>
 
         <div className="flex gap-6 mt-6">
-          <Link to="/" className="text-magenta hover:underline">Retour à l'accueil</Link>
-          <Link to="/confidentialite" className="text-magenta hover:underline">Politique de confidentialité</Link>
+          <Link to="/" className="accent hover:underline">Retour à l'accueil</Link>
+          <Link to="/confidentialite" className="accent hover:underline">Politique de confidentialité</Link>
         </div>
       </main>
     </>
