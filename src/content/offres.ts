@@ -63,43 +63,56 @@ export const FORFAITS: Forfait[] = [
   {
     id: 'essentiel',
     nom: 'Essentiel',
-    prix: 1490,
+    prix: 500,
     delai: 5,
-    cible: "Artisan, indépendant, profession libérale, commerce local, lancement d'activité. Une seule offre, un seul objectif : être appelé.",
+    cible: "Artisan, indépendant, association, lancement d'activité. Vous avez besoin d'exister en ligne et d'être appelé, sans y passer un budget.",
     inclus: [
-      'Une page unique, 8 blocs, construite pour une seule action',
-      "Tous les textes rédigés à partir d'un entretien de cadrage de 45 minutes",
+      'Une page unique, 6 blocs, construite pour une seule action',
       'Design assemblé depuis le système de composants MAF Studio',
       'Version mobile traitée comme un écran à part entière',
       "Formulaire, bouton d'appel direct, lien WhatsApp, plan d'accès, horaires",
-      'SEO technique complet : titres, balises, données structurées, sitemap, robots, vitesse',
+      'Référencement technique de base : titres, balises, sitemap, vitesse',
       "Mesure d'audience sans cookie, donc aucun bandeau de consentement à subir",
-      'Mentions légales et politique de confidentialité rédigées',
-      'Nom de domaine, hébergement et certificat à votre nom, première année incluse',
       'Mise en ligne, remise du code source et de 100 % des accès',
-      'Une heure de formation en visio, enregistrée, plus un mémo écrit',
-      '2 tours de corrections',
+      '1 tour de corrections',
       'Garantie de conformité sans limite de durée',
     ],
     exclus: [
+      'Rédaction des textes : vous les fournissez, ou 490 € pour que je les écrive',
       'Pages supplémentaires (290 € l’unité)',
       'Maquette sur-mesure (690 €)',
-      'Blog',
-      'Boutique',
-      'Logo',
-      'Photographies',
-      'Publicité',
+      'Nom de domaine et hébergement, à ouvrir à votre nom (environ 75 € la première année)',
+      'Blog, boutique, logo, photographies, publicité',
     ],
+    jours: 1,
+  },
+  {
+    id: 'vitrine',
+    nom: 'Vitrine',
+    prix: 1490,
+    delai: 5,
+    cible: "TPE établie qui veut une page qui travaille vraiment : écrite pour convaincre, trouvable sur Google, et dont vous gardez la main.",
+    inclus: [
+      'Tout Essentiel, plus :',
+      "Tous les textes rédigés à partir d'un entretien de cadrage de 45 minutes",
+      'Référencement technique complet : données structurées, balises sociales, robots',
+      'Mentions légales et politique de confidentialité rédigées',
+      'Nom de domaine, hébergement et certificat à votre nom, première année incluse',
+      'Une heure de formation en visio, enregistrée, plus un mémo écrit',
+      '2 tours de corrections',
+    ],
+    exclus: ['Pages supplémentaires (290 € l’unité)', 'Maquette sur-mesure (690 €)', 'Blog', 'Boutique', 'Publicité'],
     jours: 3,
+    recommande: true,
   },
   {
     id: 'complet',
     nom: 'Complet',
     prix: 2990,
     delai: 15,
-    cible: "TPE et PME établies, plusieurs prestations ou plusieurs zones, besoin d'exister sur des recherches précises. C'est le forfait qui correspond à la grande majorité des demandes réelles.",
+    cible: "TPE et PME avec plusieurs prestations ou plusieurs zones, besoin d'exister sur des recherches précises. C'est le forfait qui correspond à la majorité des demandes réelles.",
     inclus: [
-      'Tout Essentiel, plus :',
+      'Tout Vitrine, plus :',
       '6 pages entièrement rédigées',
       "Atelier de cadrage d'une heure trente",
       'Maquette sur-mesure validée par vous avant la moindre ligne de code',
@@ -111,14 +124,13 @@ export const FORFAITS: Forfait[] = [
     ],
     exclus: ['Boutique', 'Espace client', 'Multilingue (690 €)', 'Fonctionnalité sur mesure', 'Publicité'],
     jours: 6,
-    recommande: true,
   },
   {
     id: 'boutique',
     nom: 'Boutique',
     prix: 4900,
     delai: 25,
-    cible: 'Commerçant, producteur, marque naissante, catalogue court et photos existantes. Jusqu’à 30 références. Pas de catalogue à créer, pas de logistique à inventer.',
+    cible: 'Commerçant, producteur, marque naissante, catalogue court et photos existantes. Jusqu’à 30 références.',
     inclus: [
       'Tout Complet, plus :',
       'Boutique jusqu’à 30 références importées depuis votre fichier',
@@ -129,41 +141,41 @@ export const FORFAITS: Forfait[] = [
       'Tunnel de commande, e-mails transactionnels, relance de panier',
       'Formation 2 heures',
       "30 jours d'assistance après la mise en ligne",
-      "Abonnement de la plateforme souscrit par vous, à votre nom",
     ],
     exclus: [
-      'ERP',
-      'Marketplace',
-      'Multi-entrepôt',
-      'Tarifs par client',
+      'ERP, marketplace, multi-entrepôt, tarifs par client',
       'Plus de 30 références (8 € par référence saisie au-delà)',
+      "Abonnement de la plateforme, souscrit par vous et à votre nom",
     ],
     jours: 9,
   },
-  {
-    id: 'sur-mesure',
-    nom: 'Sur-mesure',
-    prix: 7500,
-    delai: 30,
-    cible: "Organisme de formation, école, cabinet, association, structure avec un parcours à construire. C'est le registre de black-academy.fr et d'avancia-formation.fr, déjà livrés et en ligne.",
-    inclus: [
-      'Tout Complet, plus :',
-      '12 pages',
-      'Une fonctionnalité sur mesure : simulateur, calculateur, tunnel de candidature, espace de dépôt, prise de rendez-vous avancée',
-      'Direction artistique dédiée, 2 pistes présentées, une retenue et déclinée',
-      'Rédaction intégrale des 12 pages',
-      'Recette écrite point par point, remise avec le site',
-      'Formation 2 heures enregistrée',
-      "60 jours d'assistance et un point d'accompagnement à 30 jours",
-      '4 tours de corrections',
-      "Une refonte complète entre dans ce forfait au même prix, précédée de l'audit à 490 € intégralement déduit",
-    ],
-    exclus: [
-      'Au-delà de ce périmètre, le devis est chiffré en jours et détaillé ligne par ligne avant signature',
-    ],
-    jours: 12,
-  },
 ]
+
+/**
+ * Traité à part, en bandeau sous la grille : son périmètre se définit, il ne
+ * se compare pas ligne à ligne avec les autres.
+ */
+export const SUR_MESURE: Forfait = {
+  id: 'sur-mesure',
+  nom: 'Sur-mesure',
+  prix: 7500,
+  delai: 30,
+  cible:
+    "Organisme de formation, école, cabinet, association, structure avec un parcours à construire. C'est le registre de black-academy.fr et d'avancia-formation.fr, déjà livrés et en ligne.",
+  inclus: [
+    '12 pages entièrement rédigées',
+    'Une fonctionnalité sur mesure : simulateur, calculateur, tunnel de candidature, espace de dépôt',
+    'Direction artistique dédiée, 2 pistes présentées, une retenue et déclinée',
+    'Recette écrite point par point, remise avec le site',
+    "60 jours d'assistance et un point d'accompagnement à 30 jours",
+    '4 tours de corrections',
+    "Une refonte complète entre dans ce forfait au même prix, précédée de l'audit à 490 € intégralement déduit",
+  ],
+  exclus: [
+    'Au-delà de ce périmètre, le devis est chiffré en jours et détaillé ligne par ligne avant signature',
+  ],
+  jours: 12,
+}
 
 /** Récurrent. Proposé à la fin de la première année incluse, jamais à la signature. */
 export interface Abonnement {
@@ -240,6 +252,7 @@ export interface Option {
 }
 
 export const OPTIONS: Option[] = [
+  { nom: 'Rédaction de vos textes', prix: '490 €', visible: true, detail: 'incluse à partir de Vitrine' },
   { nom: 'Page supplémentaire', prix: '290 €', visible: true },
   { nom: 'Article de blog rédigé et publié', prix: '240 €', visible: true, detail: '840 € les quatre' },
   { nom: "Audit écrit d'un site existant", prix: '490 €', visible: true, detail: 'déduit du forfait si commande sous 30 jours' },
@@ -282,7 +295,7 @@ export const NON_PROPOSE = [
  */
 export const ANCRAGE = {
   lignes: [
-    { libelle: 'Essentiel', montant: 1490 },
+    { libelle: 'Vitrine', montant: 1490 },
     { libelle: '5 pages supplémentaires à 290 €', montant: 1450 },
     { libelle: 'Maquette sur-mesure', montant: 690 },
     { libelle: 'Pack SEO local', montant: 790 },
@@ -316,7 +329,7 @@ export const GARANTIES = [
   {
     titre: 'Sortie après maquette',
     texte:
-      "Sur Complet, Boutique et Sur-mesure : si la direction artistique ne vous convient pas après le tour de corrections inclus, vous arrêtez là. L'acompte de 40 % reste acquis, le solde n'est pas dû, les maquettes ne vous sont pas cédées. L'Essentiel n'a pas de phase de maquette séparée ; il reçoit deux tours de corrections en contrepartie.",
+      "Sur Complet, Boutique et Sur-mesure : si la direction artistique ne vous convient pas après le tour de corrections inclus, vous arrêtez là. L'acompte de 40 % reste acquis, le solde n'est pas dû, les maquettes ne vous sont pas cédées. L'Essentiel et la Vitrine n'ont pas de phase de maquette séparée : ils reçoivent des tours de corrections en contrepartie.",
   },
   {
     titre: 'Aucun engagement, et reprise en main chiffrée',
@@ -341,7 +354,7 @@ export const PAIEMENT = {
   base: '40 % à la signature, 60 % à la livraison avant mise en ligne.',
   fractionne: 'Trois fois sans frais à partir de Complet (40 / 30 / 30), montants et dates exacts inscrits sur le devis.',
   essentiel:
-    "L'Essentiel est également payable en 30 % (447 €) puis 10 mensualités de 104,30 € HT — sans frais, sans engagement de durée, tableau de solde publié à l'euro près, propriété du site inchangée dès le premier jour.",
+    "L'Essentiel à 500 € se règle en une fois à la livraison : en dessous de ce montant, un échéancier coûte plus cher à gérer qu'il ne rend service.",
   remise:
     "Aucune remise, jamais. Si le budget ne passe pas, on descend d'un palier ou on retire des options : le prix du palier ne bouge pas.",
 }

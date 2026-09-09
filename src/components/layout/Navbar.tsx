@@ -76,7 +76,7 @@ export default function Navbar() {
           MAF STUDIO
         </a>
 
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-7">
           {LIENS.map((id) => (
             <a key={id} href={`#${id}`} className="mono text-gris hover:text-encre transition-colors py-3">
               {SECTIONS.find((s) => s.id === id)?.label}
@@ -85,7 +85,7 @@ export default function Navbar() {
         </div>
 
         {/* Le sommaire-gnomon */}
-        <nav aria-label="Sommaire de la page" className="hidden md:flex items-center gap-4 ml-auto lg:ml-0">
+        <nav aria-label="Sommaire de la page" className="hidden xl:flex items-center gap-4 ml-auto lg:ml-0">
           <ol className="flex items-end gap-[5px]">
             {SECTIONS.map((s, i) => (
               <li key={s.id} className="flex items-end">
@@ -105,7 +105,7 @@ export default function Navbar() {
           </span>
         </nav>
 
-        <BookingButton className="plaque-pleine hidden sm:inline-flex bg-encre text-jour mono-md mono px-5 py-3 shrink-0">
+        <BookingButton className="pilule hidden sm:inline-flex bg-encre text-jour mono px-5 py-3 shrink-0 whitespace-nowrap">
           Réserver 20 minutes
         </BookingButton>
 

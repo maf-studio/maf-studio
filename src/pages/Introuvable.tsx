@@ -12,7 +12,7 @@ export default function Introuvable() {
           <p className="mt-6 mesure text-gris">
             Le lien est peut-être ancien, ou mal recopié.
           </p>
-          <Link to="/" className="mono inline-block mt-8 px-7 py-4 bg-encre text-jour plaque-pleine">
+          <Link to="/" className="mono inline-block mt-8 px-7 py-4 bg-encre text-jour pilule">
             Retour à l'accueil
           </Link>
         </div>

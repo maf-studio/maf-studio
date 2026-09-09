@@ -36,33 +36,36 @@
 
 @theme {
   /* SURFACES */
-  --color-jour:     #F2F0EA;
-  --color-penombre: #DFDCD3;
-  --color-nuit:     #0E0D0B;
+  --color-jour:     #F6F7F9;
+  --color-penombre: #ECEEF2;
+  --color-nuit:     #0B1020;
 
   /* ENCRES */
-  --color-encre:    #141310;
-  --color-gris:     #6B6A62;
+  --color-encre:    #131A2E;
+  --color-gris:     #5C6577;
 
   /* L'OMBRE — jamais noire : c'est le sol privé de soleil, teinté par le ciel.
      Valeur volontairement basse en contraste. Une ombre portée par un titre
      de 9,5 rem couvre une surface énorme : à 3:1 elle devient un second titre
      et rend illisible le texte qui la traverse. Elle doit se lire comme une
      forme, pas comme du contenu. */
-  --color-ombre:    #D9D6CC;
+  --color-ombre:    #D5D9E2;
 
   /* L'ACCENT — un seul, moins de 3 % des pixels */
-  --color-soleil:       #D9541E;
-  --color-soleil-encre: #A33A0C;
+  --color-soleil:       #2F5BEA;
+  --color-soleil-encre: #1D3FC4;
+  /* Sur le fond nuit, le bleu de jour tombe à 3,4:1. Version éclaircie,
+     mesurée à 5,7:1. */
+  --color-soleil-nuit:  #5F86FF;
 
   /* FILETS */
-  --color-filet:      rgba(20, 19, 16, 0.14);
-  --color-filet-nuit: rgba(242, 240, 234, 0.13);
+  --color-filet:      rgba(19, 26, 46, 0.13);
+  --color-filet-nuit: rgba(246, 247, 249, 0.14);
 
   --font-sans: 'Mona Sans Variable', system-ui, sans-serif;
   --font-mono: 'Martian Mono Variable', ui-monospace, monospace;
 
-  --radius: 0px;
+  --radius: 12px;
 
   /* L'angle unique du site. Il régit la direction des ombres, le
      biseau des plaques et le sens des décalages au survol. 24 deg est
@@ -87,7 +90,7 @@
 :root,
 [data-ground="jour"]     { --accent: var(--color-soleil-encre); --accent-large: var(--color-soleil); }
 [data-ground="penombre"] { --accent: var(--color-soleil-encre); --accent-large: var(--color-soleil); }
-[data-ground="nuit"]     { --accent: var(--color-soleil);       --accent-large: var(--color-soleil); }
+[data-ground="nuit"]     { --accent: var(--color-soleil-nuit);  --accent-large: var(--color-soleil-nuit); }
 
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
@@ -145,11 +148,10 @@
 
   .display {
     font-family: var(--font-sans);
-    font-variation-settings: 'wdth' 118, 'wght' 800;
-    font-size: clamp(3.1rem, 8.6vw, 9.5rem);
-    line-height: 0.84;
-    letter-spacing: -0.032em;
-    text-transform: uppercase;
+    font-variation-settings: 'wdth' 112, 'wght' 800;
+    font-size: clamp(2.35rem, 7.6vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: -0.038em;
   }
   /* Sous 480px une largeur 118 déborde : on resserre. */
   @media (max-width: 479px) { .display { font-variation-settings: 'wdth' 92, 'wght' 800; } }
@@ -157,15 +159,14 @@
   /* En petit écran le titre se replie sur quatre lignes, et un interligne de
      0,84 fait heurter l'accent de « OUVRÉS » la ligne du dessus. On desserre
      juste assez pour dégager les capitales accentuées. */
-  @media (max-width: 767px) { .display { line-height: 0.94; } }
+  @media (max-width: 767px) { .display { line-height: 1.0; } }
 
   .h2 {
     font-family: var(--font-sans);
-    font-variation-settings: 'wdth' 112, 'wght' 750;
-    font-size: clamp(2.2rem, 4.6vw, 4.4rem);
-    line-height: 0.90;
-    letter-spacing: -0.025em;
-    text-transform: uppercase;
+    font-variation-settings: 'wdth' 106, 'wght' 780;
+    font-size: clamp(2.1rem, 4.2vw, 3.8rem);
+    line-height: 1.0;
+    letter-spacing: -0.032em;
   }
 
   .h3 {
@@ -253,27 +254,13 @@
     margin-bottom: -2.25rem;
   }
 
-  /* --- LE BISEAU ---------------------------------------------
-     En ::after de 1px et non en clip-path : un clip-path rogne
-     l'anneau de focus. Le clip-path n'est conservé que sur la plaque
-     pleine du CTA primaire, qui porte alors son focus en box-shadow.
-     Le biseau ne vit qu'à l'échelle d'une plaque : à pleine largeur,
-     un vrai 24 deg mangerait 44 % de la hauteur. Les limites de
-     section sont des filets 1px, point. */
-  .biseau { position: relative; }
-  .biseau::after {
-    content: "";
-    position: absolute;
-    top: 0; right: 0;
-    width: 24px; height: 24px;
-    background: linear-gradient(to bottom left, currentColor 0 50%, transparent 50%);
-    color: var(--color-filet);
-    pointer-events: none;
-  }
-
-  .plaque-pleine {
-    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
-  }
+  /* --- FORMES -----------------------------------------------
+     Le biseau à 24 degrés a quitté les cartes : il jurait avec le rayon.
+     L'angle survit là où il porte du sens, dans la direction des ombres.
+     Les boutons sont des pilules, les blocs sont arrondis. La sobriété ne
+     vient plus de l'angle vif, elle vient du vide et du contraste. */
+  .pilule { border-radius: 999px; }
+  .carte  { border-radius: var(--radius); }
 
   /* --- LE GRAIN ----------------------------------------------
      Une seule couche, fixe, plein écran, à alpha pré-multiplié et

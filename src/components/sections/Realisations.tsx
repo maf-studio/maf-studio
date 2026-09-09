@@ -1,4 +1,4 @@
-import { REALISATIONS, CONTRIBUTIONS, TOUS_LES_PROJETS } from '@/data/realisations'
+import { REALISATIONS, CONTRIBUTIONS } from '@/data/realisations'
 
 /**
  * Réalisations — le seul actif de preuve réel du site.
@@ -28,24 +28,8 @@ export default function Realisations() {
           vous pouvez ouvrir maintenant.
         </p>
 
-        {/* Barre de noms : tous les projets, sans prestation attribuée ici. */}
-        <div className="mt-12 pt-8 border-t border-filet flex flex-wrap items-center gap-x-9 gap-y-3">
-          <span className="mono text-gris shrink-0">J'ai travaillé pour</span>
-          {TOUS_LES_PROJETS.map((p) => (
-            <a
-              key={p.nom}
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="h3 text-encre/60 hover:text-encre text-lg md:text-xl py-2 transition-colors"
-            >
-              {p.nom}
-            </a>
-          ))}
-        </div>
-
         {/* ── Sites livrés de bout en bout ───────────────────── */}
-        <div className="mt-12 border border-filet grid sm:grid-cols-2 lg:grid-cols-4">
+        <div className="carte overflow-hidden mt-14 border border-filet grid sm:grid-cols-2 lg:grid-cols-4">
           {REALISATIONS.map((p, i) => (
             <a
               key={p.nom}
@@ -72,7 +56,7 @@ export default function Realisations() {
 
         {/* ── Interventions partielles ────────────────────────
             Étiquetées comme telles : c'est ce qui rend le reste crédible. */}
-        <div className="mt-4 border border-filet bg-penombre">
+        <div className="carte overflow-hidden mt-4 border border-filet bg-penombre">
           <div className="px-8 pt-7 pb-2 mono text-gris">
             J'y suis intervenu sans avoir réalisé l'ensemble
           </div>

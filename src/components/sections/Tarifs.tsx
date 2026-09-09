@@ -1,5 +1,5 @@
 import BookingButton from '@/components/BookingButton'
-import { FORFAITS, ANCRAGE, MENTION_TVA, euros } from '@/content/offres'
+import { FORFAITS, SUR_MESURE, ANCRAGE, MENTION_TVA, euros } from '@/content/offres'
 
 /**
  * TARIFS — LE ZÉNITH.
@@ -23,12 +23,12 @@ export default function Tarifs() {
         <span className="mono text-gris">06 — Tarifs</span>
         <h2 className="h2 text-encre mt-4">Et combien ça coûte</h2>
         <p className="mt-6 mesure text-gris">
-          Quatre prix fermes. Le prix affiché est le prix facturé. Ce qui n'est pas
+          Cinq prix fermes, du site le plus simple au projet le plus construit. Le prix affiché est le prix facturé. Ce qui n'est pas
           inclus est écrit sous chaque forfait, dans le même corps de texte que ce
           qui l'est.
         </p>
 
-        <div className="mt-14 grid md:grid-cols-2 xl:grid-cols-4 border-t border-l border-filet">
+        <div className="carte overflow-hidden mt-14 grid md:grid-cols-2 xl:grid-cols-4 border-t border-l border-filet">
           {FORFAITS.map((f) => (
             <article key={f.id} className="border-r border-b border-filet p-7 flex flex-col">
               <div className="flex items-baseline justify-between gap-3">
@@ -67,21 +67,40 @@ export default function Tarifs() {
                 </ul>
               </div>
 
-              <BookingButton className="plaque-pleine mt-7 bg-encre text-jour mono mono-md px-5 py-3.5 w-full">
+              <BookingButton className="pilule mt-7 bg-encre text-jour mono mono-md px-5 py-3.5 w-full">
                 Demander ce forfait
               </BookingButton>
             </article>
           ))}
         </div>
 
+        <div className="carte mt-4 border border-filet p-7 md:p-9 grid lg:grid-cols-12 gap-6 lg:gap-10">
+          <div className="lg:col-span-4">
+            <h3 className="h3 text-encre text-xl">{SUR_MESURE.nom}</h3>
+            <p className="mt-4 text-encre" style={{ fontVariationSettings: "'wdth' 110, 'wght' 800", fontSize: 'clamp(2rem,3.4vw,2.75rem)', lineHeight: 1 }}>
+              {euros(SUR_MESURE.prix)} €
+            </p>
+            <p className="mono mt-2 text-gris">HT · {SUR_MESURE.delai} jours ouvrés</p>
+            <p className="mt-5 text-[0.95rem] text-gris leading-relaxed">{SUR_MESURE.cible}</p>
+          </div>
+          <ul className="lg:col-span-8 grid sm:grid-cols-2 gap-x-8 gap-y-2 lg:border-l border-filet lg:pl-10">
+            {SUR_MESURE.inclus.map((i) => (
+              <li key={i} className="text-[0.95rem] text-encre flex gap-2.5">
+                <span aria-hidden="true" className="mt-[0.6em] h-px w-2.5 shrink-0" style={{ background: 'var(--accent-large)' }} />
+                <span>{i}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         {/* L'ANCRAGE — le seul dispositif qui transforme un prix en
             démonstration refaisable par le prospect lui-même. Il n'a de sens
             que si toutes les options citées figurent sur la page avec leur
             prix : voir la section Options. */}
-        <div className="mt-10 border border-filet p-7 md:p-9">
+        <div className="carte mt-10 border border-filet p-7 md:p-9">
           <p className="text-encre text-lg md:text-xl leading-relaxed mesure">
             Reconstitué à la carte avec les options de cette page, le périmètre du
-            forfait {FORFAITS[1].nom} coûterait{' '}
+            forfait {FORFAITS[2].nom} coûterait{' '}
             <span style={{ fontVariationSettings: "'wght' 800" }}>{euros(ANCRAGE.total)} € HT</span>.
             Il est à <span style={{ fontVariationSettings: "'wght' 800" }}>{euros(ANCRAGE.prixReel)} €</span>.
             Vous pouvez refaire le calcul.

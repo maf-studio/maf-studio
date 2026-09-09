@@ -90,11 +90,11 @@ export default function Contact() {
             <h2 className="h2 text-encre mt-4">Parlons de votre projet</h2>
 
             <div className="mt-10 flex flex-col sm:flex-row lg:flex-col gap-3">
-              <BookingButton className="plaque-pleine bg-encre text-jour mono mono-md px-7 py-4 text-center">
+              <BookingButton className="pilule bg-encre text-jour mono mono-md px-7 py-4 text-center">
                 Réserver 20 minutes
               </BookingButton>
               <a href="#formulaire"
-                 className="mono mono-md px-7 py-4 text-center text-encre border border-filet">
+                 className="pilule mono mono-md px-7 py-4 text-center text-encre border border-filet hover:border-encre transition-colors">
                 Recevoir un devis
               </a>
             </div>
@@ -113,7 +113,7 @@ export default function Contact() {
                 formulaire a été remplacé par une confirmation. */}
             <div aria-live="polite">
               {etat === 'ok' ? (
-                <div className="border border-filet p-8">
+                <div className="carte border border-filet p-8">
                   <h3 className="h3 text-encre text-2xl">Message reçu.</h3>
                   <p className="mt-3 text-gris">
                     Je vous réponds sous un jour ouvré{form.email ? ` à ${form.email}` : ''}.
@@ -157,7 +157,7 @@ export default function Contact() {
                   </div>
 
                   <button type="submit" disabled={etat === 'envoi'}
-                          className="plaque-pleine mt-8 w-full bg-encre text-jour mono mono-md px-6 py-4 disabled:opacity-50">
+                          className="pilule mt-8 w-full bg-encre text-jour mono mono-md px-6 py-4 disabled:opacity-50">
                     {etat === 'envoi' ? 'Envoi en cours' : 'Envoyer'}
                   </button>
 

@@ -24,15 +24,19 @@ export const QUESTIONS: Question[] = [
   },
   {
     q: 'Cinq jours ouvrés, à partir de quand exactement ?',
-    r: "À partir du moment où j'ai reçu votre acompte et votre dossier complet : logo, photos, accès, textes existants s'il y en a. Le compteur s'arrête chaque fois que j'attends un retour de votre part et repart à réception. Cinq jours, c'est le forfait Essentiel, une page. Le Complet, six pages, c'est quinze jours ouvrés. La Boutique, vingt-cinq. Le Sur-mesure, trente. Ces dates sont écrites sur le devis, et si je dépasse de mon fait, vous choisissez la pénalité à la signature.",
+    r: "À partir du moment où j'ai reçu votre acompte et votre dossier complet : logo, photos, accès, textes existants s'il y en a. Le compteur s'arrête chaque fois que j'attends un retour de votre part et repart à réception. Cinq jours ouvrés, c'est l'Essentiel et la Vitrine, une page. Le Complet, six pages, c'est quinze jours. La Boutique, vingt-cinq. Le Sur-mesure, trente. Ces dates sont écrites sur le devis, et si je dépasse de mon fait, vous choisissez la pénalité à la signature.",
   },
   {
-    q: 'Pourquoi 1 490 € alors que je trouve des sites à 500 €, ou à 29 € par mois ?',
-    r: "À 500 €, on paie une journée de travail ; un site écrit, dessiné et mis en ligne en demande trois. Un prestataire qui facture 500 € livre soit un gabarit rempli en une journée, soit du travail à perte, et dans les deux cas c'est vous qui perdez. Quant aux 29 € par mois : sur trois ans vous payez 1 044 € et vous ne possédez ni le site, ni le code, ni le domaine ; le jour où vous arrêtez de payer, il disparaît. Ici, l'Essentiel revient à environ 1 670 € sur trois ans, hébergement compris, soit moins cher qu'une location à 49 € par mois qui coûte 1 764 € et ne vous laisse rien.",
+    q: 'Comment un site à 500 € est-il possible ?',
+    r: "Parce que le périmètre correspond à une journée de travail, et qu'il est écrit noir sur blanc. Une page, six blocs, assemblée depuis mon système de composants, et c'est vous qui fournissez les textes. Je ne prétends pas faire en un jour ce qui en demande trois. Si vous voulez que j'écrive les textes, que je pose le référencement complet et que je vous forme, c'est la Vitrine à 1 490 €. Méfiez-vous du prestataire qui annonce 500 € pour le même périmètre qu'un autre à 3 000 : soit il livre un gabarit rempli à la va-vite, soit il travaille à perte, et dans les deux cas c'est vous qui payez la différence plus tard.",
+  },
+  {
+    q: 'Et les sites à 29 € par mois ?',
+    r: "Sur trois ans vous payez 1 044 € et vous ne possédez ni le site, ni le code, ni le domaine : le jour où vous arrêtez de payer, il disparaît. Ici, l'Essentiel coûte 500 € une fois, plus environ 75 € par an de domaine et d'hébergement à votre nom. Sur trois ans, cela fait 725 €, et le site vous appartient depuis le premier jour.",
   },
   {
     q: 'Je peux le faire moi-même sur Wix. Pourquoi vous payer ?',
-    r: "Vous pouvez, et ça coûte 200 à 500 € par an. Mais Wix vend un outil, pas un travail fait : l'arborescence, les textes, les photos, le référencement et les mises à jour restent à votre charge. La vraie comparaison n'est pas 1 490 € contre 200 € par an, c'est 1 490 € contre les trente heures que vous y passerez. Si votre temps a une valeur, faites le calcul.",
+    r: "Vous pouvez, et ça coûte 200 à 500 € par an. Mais Wix vend un outil, pas un travail fait : l'arborescence, les textes, les photos, le référencement et les mises à jour restent à votre charge. La vraie comparaison n'est pas 500 € contre 200 € par an, c'est 500 € contre les trente heures que vous y passerez. Si votre temps a une valeur, faites le calcul.",
   },
   {
     q: "Vous êtes seul. Que se passe-t-il s'il vous arrive quelque chose ?",
@@ -56,7 +60,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     q: 'Y aura-t-il des frais cachés ? Ça me coûte quoi par an ensuite ?',
-    r: "Non, et voici la liste complète. Après la première année, qui est incluse : le renouvellement du nom de domaine, environ 15 € par an, et l'hébergement, environ 5 € par mois, tous deux facturés directement à votre nom. Ou 49 € par mois si vous prenez le Socle, qui les couvre. C'est tout. Le devis est ferme, et tout ce qui sort du périmètre écrit est chiffré et validé par vous avant d'être commencé.",
+    r: "Non, et voici la liste complète : le renouvellement du nom de domaine, environ 15 € par an, et l'hébergement, environ 5 € par mois, tous deux facturés directement à votre nom. Sur l'Essentiel, ils sont à votre charge dès le départ, soit environ 75 € la première année. À partir de la Vitrine, la première année est incluse. Ou 49 € par mois si vous prenez le Socle, qui les couvre. C'est tout. Le devis est ferme, et tout ce qui sort du périmètre écrit est chiffré et validé par vous avant d'être commencé.",
   },
   {
     q: "Pourquoi n'y a-t-il pas de TVA sur votre devis ?",
@@ -68,7 +72,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     q: 'Je peux commencer petit et agrandir ensuite ?',
-    r: "Oui. Le passage de l'Essentiel au Complet se fait en payant la seule différence, 1 500 €, dans les douze mois suivant la mise en ligne, sans refaire le site. Rien de ce que vous avez payé n'est perdu.",
+    r: "Oui, et c'est prévu pour. Vous montez d'un palier en payant la seule différence, dans les douze mois suivant la mise en ligne, sans refaire le site : 990 € de l'Essentiel à la Vitrine, 1 500 € de la Vitrine au Complet. Rien de ce que vous avez déjà payé n'est perdu.",
   },
   {
     q: 'Des aides peuvent-elles financer le projet ?',

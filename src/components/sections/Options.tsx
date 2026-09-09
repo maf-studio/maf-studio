@@ -60,7 +60,7 @@ export default function Options() {
         </details>
 
         <h3 className="mono text-gris mt-16">Abonnements, proposés après la première année incluse</h3>
-        <div className="mt-4 grid md:grid-cols-3 border-t border-l border-filet">
+        <div className="carte overflow-hidden mt-4 grid md:grid-cols-3 border-t border-l border-filet">
           {ABONNEMENTS.map((a) => (
             <article key={a.id} className="border-r border-b border-filet p-7 flex flex-col">
               <div className="flex items-baseline justify-between gap-3">
